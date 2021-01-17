@@ -76,3 +76,33 @@ CREATE TABLE Project (
   duration varchar(30),
   PRIMARY KEY (P_id)
 );
+
+CREATE TABLE MaterialValue (
+  m_id SERIAL,
+  m_name varchar(30) NOT NULL,
+  m_amount varchar(20) NOT NULL,
+  m_cost DECIMAL NOT NULL,
+  PRIMARY KEY (m_id)
+);
+
+
+--------------------------Procedures------------------------
+CREATE OR REPLACE PROCEDURE addMaterialValue(
+    val_mname VARCHAR(30),
+    val_mamount VARCHAR(20),
+    val_mcost DECIMAL
+    
+)
+
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    existing_materials VARCHAR(30) := (SELECT m_name from MaterialValue WHERE m_name = val_mname);
+BEGIN
+    IF (existing_materials is null) THEN
+        INSERT INTO MaterialValue(m_name, m_amount, m_cost) VALUES (val_mname,val_mamount, val_mcost);
+    ELSE
+        RAISE EXCEPTION '% is already exit', val_mname;
+    END IF;
+END;
+$$;
