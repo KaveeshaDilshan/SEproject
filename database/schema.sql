@@ -61,6 +61,13 @@ CREATE TABLE User_Profile (
 );
 
 
+CREATE TABLE MaterialValue (
+  m_id SERIAL,
+  m_name varchar(30) NOT NULL,
+  m_amount varchar(20) NOT NULL,
+  m_cost DECIMAL NOT NULL,
+  PRIMARY KEY (m_id)
+);
 
 
 
@@ -92,6 +99,27 @@ END;
 $$;
 
 
+CREATE OR REPLACE PROCEDURE addMaterialValue(
+    val_mname VARCHAR(30),
+    val_mamount VARCHAR(20),
+    val_mcost DECIMAL
+    
+)
+
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    existing_materials VARCHAR(30) := (SELECT m_name from MaterialValue WHERE m_name = val_mname);
+BEGIN
+    IF (existing_materials is null) THEN
+        INSERT INTO MaterialValue(m_name, m_amount, m_cost) VALUES (val_mname,val_mamount, val_mcost);
+    ELSE
+        RAISE EXCEPTION '% is already exit', val_mname;
+    END IF;
+END;
+$$;
+
+
 
 ----------------Insert statements------------------
 INSERT INTO user_category(cat_name) VALUES ('Quantity Surveyor'), ('Expeditor'), ('On-Site Supervisor'), ('Storekeeper'), ('Fleet Manager');
@@ -99,3 +127,4 @@ INSERT INTO user_category(cat_name) VALUES ('Quantity Surveyor'), ('Expeditor'),
 ------------------Priviledges----------------------
 GRANT ALL ON TABLE public.User_Profile to db_app;
 GRANT ALL ON TABLE public.User_Category to db_app;
+GRANT ALL ON TABLE public.MaterialValue to db_app;

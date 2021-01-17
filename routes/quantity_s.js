@@ -6,7 +6,7 @@ const auth = require('../config/auth');
 
 router.get('/estimation',auth.checkNotAuthenticated, QSController.viewEstimation);
 router.get('/estimationView',auth.checkNotAuthenticated, QSController.viewEstimationView);
-// router.post('/register', UserController.register);
+router.post('/estimation/addNewM', QSController.addNewMaterial);
 
 
 module.exports = router;
