@@ -4,7 +4,7 @@ const qsService = require('../services/qsServices');
 
 const viewEstimation = async (req, res) => {
     const materials = await qsService.showMaterials();
-    res.render('estimation', {name: req.user.name, materials, ANMError: req.query.ANMError});
+    res.render('estimation', {name: req.user.name, materials});
 }
 
 const viewEstimationView = async (req, res) => {
@@ -14,10 +14,11 @@ const viewEstimationView = async (req, res) => {
 const addNewMaterial = async (req, res) => {
     try{
     await qsService.addNewMaterial(req.body);
-    return res.redirect('../estimation');
+    return res.status(200).send({result: 'redirect', url: 'estimation', err: ''});
     }
     catch(err){
-        return res.redirect(`../estimation/?ANMError=${err}`);
+        return res.status(200).send({err: `${err}`});
+        
   
     }
     

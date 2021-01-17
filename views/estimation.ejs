@@ -299,13 +299,14 @@
   </div>
   <!-- /.card-header -->
   <!-- form start -->
-  <form  id="addNewMaterial-form" action="/qs/estimation/addNewM" method="POST">
+  <!-- action="/qs/estimation/addNewM" method="POST" -->
+  <form  id="addNewMaterial-form" >
     <div class="card-body">
-      <% if(ANMError) {%>
-        <div class="alert alert-danger" role="alert">
-          <%=ANMError%>
+    
+        <div id="err_msg">
+        <!-- for error msg -->
         </div>
-        <% } %>
+       
       <div class="form-group">
         <label for="">Name</label>
         <input type="text" class="form-control" id="m_name" name="m_name" placeholder="Enter material name" required>
@@ -364,11 +365,7 @@
     <!-- ./wrapper -->
 
 
-
-
-
-
-
   </body>
+
   <%- include('_footer') %>
     </div>
