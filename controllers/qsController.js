@@ -8,7 +8,8 @@ const viewEstimation = async (req, res) => {
 }
 
 const viewEstimationView = async (req, res) => {
-    res.render('estimationView', {name: req.user.name});
+    const estimates = await qsService.showEstimate();
+    res.render('estimationView', {name: req.user.name, estimates});
 }
 
 const addNewMaterial = async (req, res) => {

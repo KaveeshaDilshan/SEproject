@@ -8,6 +8,10 @@ class qsService {
         return QS.addNewMaterialTodb(m_name, m_amount, m_cost);
     }
     
+
+    static async showEstimate(){
+        return QS.getEstimate();
+    }
     
 
 }

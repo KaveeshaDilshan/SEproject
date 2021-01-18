@@ -202,91 +202,90 @@
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        <section class="content-header">
+        <!-- <section class="content-header">
           <div class="container-fluid">
             <div class="row mb-2">
               <div class="col-sm-12">
-                <!-- <h1>Icons</h1> -->
                 <%- include('_card') %>
               </div>
             </div>
-          </div><!-- /.container-fluid -->
-        </section>
+          </div>
+        </section> -->
     
         <!-- Main content -->
-        <section class="content">
-          <div class="container-fluid">
-            <div class="card card-primary card-outline">
-              <div class="card-header">
-                <h3 class="card-title">Tasks</h3>
-              </div> <!-- /.card-body -->
-              <div class="card-body">
-                <p>Add your tasks buttons/ report summary or anything here</p>
-                <strong>and link to side nav bar</strong>
-                <div>
-                  <a href="#">Task1</a><br>
-                  <a href="#">Task2</a><br>
-                </div>
-              </div><!-- /.card-body -->
+      <section class="content">
+        <div class="container-fluid">
+          <div class="card-header">
+            <h2 class="box-title">Project List</h2>
+          </div>
+          <!-- <div class="card card-primary card-outline">
+            <div class="card-header">
+              <h3 class="card-title">Tasks</h3>
             </div>
-          </div><!-- /.container-fluid -->
-          <div class="container-fluid">
-            <div class="card card-primary card-outline">
-              <div class="card-header">
-                <h3 class="box-title">Title</h3>
+            <div class="card-body">
+              <p>Add your tasks buttons/ report summary or anything here</p>
+              <strong>and link to side nav bar</strong>
+              <div>
+                <a href="#">Task1</a><br>
+                <a href="#">Task2</a><br>
               </div>
-              <!-- <div class="box-body table-responsive no-padding"> -->
-              <div class="card-body table-responsive no-padding">
-                <table class="table table-bordered table-hover">
-                  <tbody><tr>
-                    <th>ID</th>
-                    <th>User</th>
-                    <th>Date</th>
-                    <th>Status</th>
-                    <th>Reason</th>
-                  </tr>
+            </div>
+          </div> -->
+
+          <div class="card card-primary card-outline">
+            <div class="card-header">
+              <h3 class="box-title">Estimate ID-1</h3>
+            </div>
+            <!-- <div class="box-body table-responsive no-padding"> -->
+            <div class="card-body table-responsive no-padding">
+              <table class="table table-bordered table-hover">
+                <tbody><tr>
+                  <th>Material</th>                  
+                  <th>Size/Description</th>                  
+                  <th>Quantity</th>
+                  <th>Unit Cost</th>
+                  <th>Cost</th>
+                </tr>
+                <% if (estimates.length > 0){ %>
+                  <% let totalcost = 0 %>
+                  <% estimates.forEach(estimate => { %>
+                    <tr>
+                      <td><%= estimate.m_name %></td>
+                      <td><%= estimate.m_amount %></td>
+                      <td><%= estimate.quantity %></td>
+                      <td><%= estimate.m_cost %></td>
+                      <td><%= estimate.quantity * estimate.m_cost %></td>
+                    </tr>
+                    <% totalcost += (estimate.quantity * estimate.m_cost)  %>
+                  <% }) %>
                   <tr>
-                    <td>183</td>
-                    <td>John Doe</td>
-                    <td>11-7-2014</td>
-                    <td><span class="label label-success">Approved</span></td>
-                    <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                    <td align="center" colspan="4"><b>Total cost</b></td>
+                    <td><b><%= totalcost %></b></td>
                   </tr>
-                  <tr>
-                    <td>219</td>
-                    <td>Alexander Pierce</td>
-                    <td>11-7-2014</td>
-                    <td><span class="label label-warning">Pending</span></td>
-                    <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                  </tr>
-                  <tr>
-                    <td>657</td>
-                    <td>Bob Doe</td>
-                    <td>11-7-2014</td>
-                    <td><span class="label label-primary">Approved</span></td>
-                    <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                  </tr>
-                </tbody></table>
-              </div>
+                <% } else { %>
+                  <p>no records</p>
+                <% } %>
+              </tbody></table>
             </div>
           </div>
-        </section>
-        <!-- /.content -->        
-      </div>
-      <!-- /.content-wrapper -->
-      <footer class="main-footer">
-        <div class="float-right d-none d-sm-block">
-          <b>All rights reserved</b>
         </div>
-        <strong>Copyright &copy; 2021 <a>SE-Group 12</a>.</strong>
-      </footer>
-    
-      <!-- Control Sidebar -->
-      <aside class="control-sidebar control-sidebar-dark">
-        <!-- Control sidebar content goes here -->
-      </aside>
-      <!-- /.control-sidebar -->
+      </section>
+      <!-- /.content -->        
     </div>
-    <!-- ./wrapper -->
-    </body>
-    <%- include('_footer') %>
+    <!-- /.content-wrapper -->
+    <footer class="main-footer">
+      <div class="float-right d-none d-sm-block">
+        <b>All rights reserved</b>
+      </div>
+      <strong>Copyright &copy; 2021 <a>SE-Group 12</a>.</strong>
+    </footer>
+  
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+  </div>
+<!-- ./wrapper -->
+</body>
+<%- include('_footer') %>
