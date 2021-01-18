@@ -14,10 +14,10 @@ class QS {
         return out.rows;
     }
 
-    static async getEstimate() {
-        console.log("getEstimate");
-        const query=`select materialvalue.m_name,materialvalue.m_amount,quantity,m_cost from estimate,est_mat,materialvalue where estimate.e_id=est_mat.e_id and est_mat.m_id=materialvalue.m_id and estimate.e_id=1;`;
-        const out = await db.query(query);
+    static async getEstimate(e_id) {
+        console.log(`getEstimate`);
+        const query=`select materialvalue.m_name,materialvalue.m_amount,quantity,m_cost,estimate.p_id from estimate,est_mat,materialvalue where estimate.e_id=est_mat.e_id and est_mat.m_id=materialvalue.m_id and estimate.e_id=$1`;
+        const out = await db.query(query,[e_id]);
         return out.rows;
     }
     
