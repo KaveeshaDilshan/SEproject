@@ -263,7 +263,7 @@
                   <h4 class="box-title"><%= `Project Name: ${est_project[0].name}` %></h4>
                   <!-- <h4 class="box-title">Sended: <% if(est_project[0].submit_status==true){ %>Yes<% } else { %>No<% } %></h4> -->
                   <% if(est_project[0].submit_status==true){ %>
-                  <h4 class="box-title"><%= `Sended date: ${est_project[0].submit_date.toLocaleDateString()}` %></h4>
+                  <h4 class="box-title"><%= `Sended date: ${est_project[0].submit_date.getFullYear()}-${est_project[0].submit_date.getMonth()+1}-${est_project[0].submit_date.getDate()}` %></h4>
                   <% } %>
                   <% if(est_project[0].submit_status==false){ %>
                     <div style="display: flex;flex-direction:row;flex-wrap:nowrap;justify-content:space-between">
