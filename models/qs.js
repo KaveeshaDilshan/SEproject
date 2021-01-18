@@ -23,7 +23,7 @@ class QS {
     
     static async getEst_Project(e_id) {
         console.log("getProject");
-        const query=`select project.p_id,project.name,project.start_date,estimate.e_id from estimate,project where estimate.p_id=project.p_id and estimate.e_id=$1`;
+        const query=`select project.p_id,project.name,project.start_date,estimate.e_id,estimate.submit_status,estimate.create_date,estimate.submit_date from estimate,project where estimate.p_id=project.p_id and estimate.e_id=$1`;
         const out = await db.query(query,[e_id]);
         return out.rows;
     }
