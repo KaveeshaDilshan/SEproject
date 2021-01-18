@@ -99,3 +99,25 @@ BEGIN
     END IF;
 END;
 $$;
+
+
+-------------------test insert-------------------
+INSERT INTO project(p_id,name,start_date,duration) VALUES (1,'first_project','08-01-2021','3 months');
+INSERT INTO project(p_id,name,start_date,duration) VALUES (2,'second_project','09-01-2021','5 months');
+
+INSERT INTO estimate(e_id,p_id,create_date,submit_status,submit_date) VALUES (1,1,'08-01-2021','1','09-01-2021');
+INSERT INTO estimate(e_id,p_id,create_date,submit_status,submit_date) VALUES (2,1,'08-01-2021','1','09-01-2021');
+INSERT INTO estimate(e_id,p_id,create_date,submit_status,submit_date) VALUES (3,2,'08-01-2021','1','12-01-2021');
+
+INSERT INTO material(m_name,m_amount,m_cost) VALUES ('mat 1','2x3x1 inch',1000);
+INSERT INTO material(m_name,m_amount,m_cost) VALUES ('mat 2','1kg',2000);
+INSERT INTO material(m_name,m_amount,m_cost) VALUES ('mat 3','fsfsfds',5000);
+INSERT INTO material(m_name,m_amount,m_cost) VALUES ('mat 4','dfsfsd',500);
+
+INSERT INTO est_mat(e_id,m_id,quantity) VALUES (1,1,5);
+INSERT INTO est_mat(e_id,m_id,quantity) VALUES (1,2,3);
+INSERT INTO est_mat(e_id,m_id,quantity) VALUES (1,4,1);
+INSERT INTO est_mat(e_id,m_id,quantity) VALUES (2,2,10);
+INSERT INTO est_mat(e_id,m_id,quantity) VALUES (2,4,8);
+INSERT INTO est_mat(e_id,m_id,quantity) VALUES (3,1,4);
+INSERT INTO est_mat(e_id,m_id,quantity) VALUES (3,2,6);
