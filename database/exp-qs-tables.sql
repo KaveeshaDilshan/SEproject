@@ -1,15 +1,23 @@
-DROP TABLE IF EXISTS Est_Mat CASCADE;
-DROP TABLE IF EXISTS Material CASCADE;
-DROP TABLE IF EXISTS Req_Mac CASCADE;
-DROP TABLE IF EXISTS Machine_Request CASCADE;
-DROP TABLE IF EXISTS Material_Order CASCADE;
-DROP TABLE IF EXISTS Estimate CASCADE;
-DROP TABLE IF EXISTS Machine CASCADE;
 DROP TABLE IF EXISTS Project CASCADE;
+DROP TABLE IF EXISTS Estimate CASCADE;
+DROP TABLE IF EXISTS MaterialValue CASCADE;
+DROP TABLE IF EXISTS Est_Mat CASCADE;
+DROP TABLE IF EXISTS Material_Order CASCADE;
+DROP TABLE IF EXISTS Machine_Request CASCADE;
+DROP TABLE IF EXISTS Machine CASCADE;
+DROP TABLE IF EXISTS Req_Mac CASCADE;
 
 ------------------ Tables --------------------
 
 ---expedi/qs ----
+CREATE TABLE Project (
+  P_id int NOT NULL,
+  name varchar(30) NOT NULL,
+  start_date date,
+  duration varchar(30),
+  PRIMARY KEY (P_id)
+);
+
 CREATE TABLE Estimate (
   E_id int NOT NULL,
   P_id int NOT NULL,
@@ -20,10 +28,11 @@ CREATE TABLE Estimate (
   FOREIGN KEY (P_id) REFERENCES Project(P_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TABLE Material (
-  M_id int NOT NULL,
-  name varchar(30) NOT NULL,
-  unit_cost numeric NOT NULL,
+CREATE TABLE MaterialValue (
+  M_id SERIAL,
+  m_name varchar(30) NOT NULL,
+  m_amount varchar(20) NOT NULL,
+  m_cost DECIMAL NOT NULL,
   PRIMARY KEY (M_id)
 );
 
@@ -33,7 +42,7 @@ CREATE TABLE Est_Mat (
   quantity int NOT NULL,
   PRIMARY KEY (E_id,M_id),
   FOREIGN KEY (E_id) REFERENCES Estimate(E_id) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (M_id) REFERENCES Material(M_id) ON DELETE CASCADE ON UPDATE CASCADE
+  FOREIGN KEY (M_id) REFERENCES MaterialValue(M_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE Material_Order (
@@ -67,22 +76,6 @@ CREATE TABLE Req_Mac (
   PRIMARY KEY (R_id,machine_name),
   FOREIGN KEY (R_id) REFERENCES Machine_Request(R_id) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (machine_name) REFERENCES Machine(machine_name) ON DELETE CASCADE ON UPDATE CASCADE
-);
-
-CREATE TABLE Project (
-  P_id int NOT NULL,
-  name varchar(30) NOT NULL,
-  start_date date,
-  duration varchar(30),
-  PRIMARY KEY (P_id)
-);
-
-CREATE TABLE MaterialValue (
-  m_id SERIAL,
-  m_name varchar(30) NOT NULL,
-  m_amount varchar(20) NOT NULL,
-  m_cost DECIMAL NOT NULL,
-  PRIMARY KEY (m_id)
 );
 
 
