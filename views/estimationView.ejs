@@ -217,7 +217,7 @@
         <div class="container-fluid">
           <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Select Project</h3>
+              <h3 class="card-title">Search Estimate</h3>
             </div>
             <!-- <div class="card-body table-responsive no-padding">
               <table class="table table-hover">
@@ -226,8 +226,8 @@
                   <th>Project Name</th>                  
                   <th>Started date</th>
                 </tr>
-                <% if (projects.length > 0){ %>
-                  <% projects.forEach(project => { %>
+                <!-- <% if (allprojects.length > 0){ %>
+                  <% allprojects.forEach(project => { %>
                     <tr>
                       <td><%= project.p_id %></td>
                       <td><%= project.name %></td>
@@ -238,8 +238,8 @@
                   <tr>
                     <td colspan="3">no projects</td>
                   </tr>
-                <% } %>
-              </tbody></table>
+                <% } %> -->
+              <!-- </tbody></table>
             </div> -->
             <form  action="estimationView" method="POST" >
               <div class="card-body">  
@@ -254,12 +254,17 @@
             </form>
           </div>
 
+          <% if(est_project.length>0) {%>
           <div class="card card-primary card-outline">
-            <!-- <div class="box-body table-responsive no-padding"> -->
             <div class="card-body table-responsive no-padding">
               <div class="card-header">
-                <h3 class="box-title">Estimate ID: <%= e_id %></h3>
+                <% if(est_project.length>0) {%>
+                  <h3 class="box-title">Estimate ID:<%= est_project[0].e_id %></h3> 
+                <% }%>
               </div>
+              
+              
+              
               <table class="table table-bordered table-hover">
                 <tbody><tr>
                   <th>Material</th>                  
@@ -280,36 +285,33 @@
                     </tr>
                     <% totalcost += (estimate.quantity * estimate.m_cost)  %>
                   <% }) %>
-                  <tr>
-                    <td align="center" colspan="4"><b>Total cost</b></td>
-                    <td><b><%= totalcost %></b></td>
-                  </tr>
-                  <% } else { %>
+                    <tr>
+                      <td align="center" colspan="4"><b>Total cost</b></td>
+                      <td><b><%= totalcost %></b></td>
+                    </tr>
+                <% } else { %>
                     <tr>
                       <td align="center" colspan="5">no records</td>
                     </tr>
-                    <% } %>
-                  </tbody></table>
-                </div>
-              </div>
+                <% } %>
+                </tbody>
+              </table>
             </div>
-          </section>
-          <!-- /.content -->        
-        </div>
-        <!-- /.content-wrapper -->
-        <footer class="main-footer">
-          <div class="float-right d-none d-sm-block">
-            <b>All rights reserved</b>
           </div>
+          <% } %>
+        </div>
+      </section>
+    </div>
+    <footer class="main-footer">
+        <div class="float-right d-none d-sm-block">
+        <b>All rights reserved</b>
+      </div>
       <strong>Copyright &copy; 2021 <a>SE-Group 12</a>.</strong>
     </footer>
-  
-    <!-- Control Sidebar -->
+
     <aside class="control-sidebar control-sidebar-dark">
       <!-- Control sidebar content goes here -->
     </aside>
-    <!-- /.control-sidebar -->
   </div>
-<!-- ./wrapper -->
 </body>
 <%- include('_footer') %>

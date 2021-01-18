@@ -21,7 +21,13 @@ class QS {
         return out.rows;
     }
     
-    static async getProject() {
+    static async getEst_Project(e_id) {
+        console.log("getProject");
+        const query=`select project.p_id,project.name,project.start_date,estimate.e_id from estimate,project where estimate.p_id=project.p_id and estimate.e_id=$1`;
+        const out = await db.query(query,[e_id]);
+        return out.rows;
+    }
+    static async getAllProjects() {
         console.log("getProject");
         const query=`select p_id,name,start_date from project;`;
         const out = await db.query(query);

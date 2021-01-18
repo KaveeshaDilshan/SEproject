@@ -13,8 +13,11 @@ class qsService {
         return QS.getEstimate(e_id);
     }
     
-    static async showProject(){
-        return QS.getProject();
+    static async showEst_Project({e_id}){
+        return QS.getEst_Project(e_id);
+    }
+    static async showAllProjects(){
+        return QS.getAllProjects();
     }
 
 }
