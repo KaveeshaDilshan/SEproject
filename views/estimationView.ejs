@@ -215,29 +215,43 @@
         <!-- Main content -->
       <section class="content">
         <div class="container-fluid">
-          <div class="card-header">
-            <h2 class="box-title">Project List</h2>
-          </div>
-          <!-- <div class="card card-primary card-outline">
+          <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Tasks</h3>
+              <h3 class="card-title">Select Project</h3>
             </div>
-            <div class="card-body">
-              <p>Add your tasks buttons/ report summary or anything here</p>
-              <strong>and link to side nav bar</strong>
-              <div>
-                <a href="#">Task1</a><br>
-                <a href="#">Task2</a><br>
-              </div>
+            <div class="card-body table-responsive no-padding">
+              <table class="table table-hover">
+                <tbody><tr>
+                  <th>ID</th>                  
+                  <th>Project Name</th>                  
+                  <th>Started date</th>
+                </tr>
+                <% if (projects.length > 0){ %>
+                  <% projects.forEach(project => { %>
+                    <tr>
+                      <td><%= project.p_id %></td>
+                      <td><%= project.name %></td>
+                      <td><%= project.start_date.toLocaleDateString() %></td>
+                    </tr>
+                  <% }) %>
+                <% } else { %>
+                  <tr>
+                    <td colspan="3">no projects</td>
+                  </tr>
+                <% } %>
+              </tbody></table>
             </div>
-          </div> -->
+          </div>
 
           <div class="card card-primary card-outline">
             <div class="card-header">
-              <h3 class="box-title">Estimate ID-1</h3>
+              <h2 class="box-title">Project Name</h2>
             </div>
             <!-- <div class="box-body table-responsive no-padding"> -->
             <div class="card-body table-responsive no-padding">
+              <div class="card-header">
+                <h3 class="box-title">Estimate 1</h3>
+              </div>
               <table class="table table-bordered table-hover">
                 <tbody><tr>
                   <th>Material</th>                  

@@ -20,7 +20,13 @@ class QS {
         const out = await db.query(query);
         return out.rows;
     }
-
+    
+    static async getProject() {
+        console.log("getProject");
+        const query=`select p_id,name,start_date from project;`;
+        const out = await db.query(query);
+        return out.rows;
+    }
 }
 
 module.exports = QS;

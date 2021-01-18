@@ -13,6 +13,9 @@ class qsService {
         return QS.getEstimate();
     }
     
+    static async showProject(){
+        return QS.getProject();
+    }
 
 }
 
