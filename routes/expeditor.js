@@ -7,7 +7,7 @@ const auth = require('../config/auth');
 router.get('/sendRequest',auth.checkNotAuthenticated, ExpeditorController.viewSendRequest);
 router.get('/order',auth.checkNotAuthenticated, ExpeditorController.viewOrder);
 router.get('/usedMaterial',auth.checkNotAuthenticated, ExpeditorController.viewUsedMaterial);
-// router.post('/register', UserController.register);
+router.post('/order', ExpeditorController.addNewOrder);
 
 
 module.exports = router;

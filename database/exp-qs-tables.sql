@@ -46,13 +46,22 @@ CREATE TABLE Est_Mat (
 );
 
 CREATE TABLE Material_Order (
-  O_id int NOT NULL,
-  E_id int NOT NULL,
+  O_id SERIAL,
+  P_id int NOT NULL,
   order_date date,
   ordered boolean,
   received boolean,
   PRIMARY KEY (O_id),
-  FOREIGN KEY (E_id) REFERENCES Estimate(E_id) ON DELETE CASCADE ON UPDATE CASCADE
+  FOREIGN KEY (P_id) REFERENCES Project(P_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE Order_items (
+  O_id int NOT NULL,
+  M_id int NOT NULL,
+  quantity int NOT NULL,
+  PRIMARY KEY (O_id,M_id),
+  FOREIGN KEY (O_id) REFERENCES Material_Order(O_id) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (M_id) REFERENCES MaterialValue(M_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE Machine_Request (
@@ -100,6 +109,28 @@ BEGIN
 END;
 $$;
 
+
+
+CREATE OR REPLACE PROCEDURE addOrderItems(
+    materials integer[],
+    quantiies integer[],
+    o_id int
+    
+)
+
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    arraylength int := array_length(materials, 1);
+    i int;
+BEGIN
+    for  i in 1..arraylength
+    loop
+      INSERT INTO Order_items (O_id, M_id, quantity) VALUES(o_id, materials[i], quantiies[i]);
+    end loop;
+  
+END;
+$$;
 
 -------------------test insert-------------------
 INSERT INTO project(p_id,name,start_date,duration) VALUES (1,'first_project','08-01-2021','3 months');

@@ -1,4 +1,3 @@
-const userValidator = require('./validators/userValidator');
 const qsService = require('../services/qsServices');
 
 
