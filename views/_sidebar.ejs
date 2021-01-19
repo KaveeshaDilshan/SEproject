@@ -1,15 +1,15 @@
  <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
         
-        <a href="../../index3.html" class="brand-link">
-          <img src="../../dist/img/AdminLTELogo.png" alt="Company Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-          <span class="brand-text font-weight-light">ABC Company</span>
-        </a>
-    
-        
-        <div class="sidebar">
- <!-- Sidebar -->
- <div class="sidebar" id="sidebar-new">
+  <a href="" class="brand-link">
+    <img src="../../dist/img/AdminLTELogo.png" alt="Company Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <span class="brand-text font-weight-light">ABC Company</span>
+  </a>
+
+  
+  <div class="sidebar">
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar-new">
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
@@ -46,27 +46,61 @@
             </p>
           </a>
           <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="expeditor/sendRequest" class="nav-link">
-                <i class="nav-icon fas fa-edit"></i>
-                <p>Task 1</p>
-              </a>
-
-            </li>
-            <li class="nav-item">
-              <a href="qs/estimation" class="nav-link">
-                <i class="nav-icon fas fa-edit"></i>
-                <p>Task 2</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="./index3.html" class="nav-link active">
-                <i class="nav-icon fas fa-edit"></i>
-                <p>Task 3</p>
-              </a>
-            </li>
+            <% if(cat_id==1){ %>
+              <li class="nav-item">
+                <a id="nav_t_1" href="qs/estimation" class="nav-link">
+                  <i class="nav-icon fas fa-edit"></i>
+                  <p>Task 1</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a id="nav_t_2" href="qs/estimationView" class="nav-link">
+                  <i class="nav-icon fas fa-edit"></i>
+                  <p>Task 2</p>
+                </a>
+              </li>
+            <% } else if(cat_id==2) { %>
+              <li class="nav-item">  
+                <a href="expeditor/sendRequest" class="nav-link">
+                  <i class="nav-icon fas fa-edit"></i>
+                  <p>Task 1</p>
+                </a>
+              </li>
+              <li class="nav-item">  
+                <a href="expeditor/order" class="nav-link">
+                  <i class="nav-icon fas fa-edit"></i>
+                  <p>Task 2</p>
+                </a>
+              </li>
+              <li class="nav-item">  
+                <a href="expeditor/sendRequest" class="nav-link">
+                  <i class="nav-icon fas fa-edit"></i>
+                  <p>Task 3</p>
+                </a>
+              </li>
+            <% } else { %>
+              <li class="nav-item">  
+                <a href="" class="nav-link">
+                  <i class="nav-icon fas fa-edit"></i>
+                  <p>Task 1</p>
+                </a>
+              </li>
+              <li class="nav-item">  
+                <a href="" class="nav-link">
+                  <i class="nav-icon fas fa-edit"></i>
+                  <p>Task 2</p>
+                </a>
+              </li>
+              <li class="nav-item">  
+                <a href="" class="nav-link">
+                  <i class="nav-icon fas fa-edit"></i>
+                  <p>Task 3</p>
+                </a>
+              </li>
+            <% } %>
           </ul>
         </li>
+
 
         <li class="nav-item">
             <a href="users/logout" class="nav-link">

@@ -106,96 +106,94 @@
       </nav>
       <!-- /.navbar -->
  
-          <!-- Main Sidebar Container -->
+ <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
         
-    <a href="../../index3.html" class="brand-link">
-      <img src="../../dist/img/AdminLTELogo.png" alt="Company Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">ABC Company</span>
-    </a>
+  <a href="/" class="brand-link">
+    <img src="../../dist/img/AdminLTELogo.png" alt="Company Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <span class="brand-text font-weight-light">ABC Company</span>
+  </a>
 
-    
-    <div class="sidebar">
-<!-- Sidebar -->
-<div class="sidebar" id="sidebar-new">
-<!-- Sidebar user panel (optional) -->
-<div class="user-panel mt-3 pb-3 mb-3 d-flex">
-  <div class="image">
-    <img src="../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-  </div>
-  <div class="info">
-    <a class="d-block">Hello <%= name %></a>
-  </div>
-</div>
-
-<!-- SidebarSearch Form -->
-<div class="form-inline">
-  <div class="input-group" data-widget="sidebar-search">
-    <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-    <div class="input-group-append">
-      <button class="btn btn-sidebar">
-        <i class="fas fa-search fa-fw"></i>
-      </button>
+  
+  <div class="sidebar">
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar-new">
+    <!-- Sidebar user panel (optional) -->
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="image">
+        <img src="../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+      </div>
+      <div class="info">
+        <a class="d-block">Hello <%= name %></a>
+      </div>
     </div>
-  </div>
-</div>
 
-<!-- Sidebar Menu -->
+    <!-- SidebarSearch Form -->
+    <div class="form-inline">
+      <div class="input-group" data-widget="sidebar-search">
+        <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+        <div class="input-group-append">
+          <button class="btn btn-sidebar">
+            <i class="fas fa-search fa-fw"></i>
+          </button>
+        </div>
+      </div>
+    </div>
 
-<nav class="mt-2">
-  <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-    <!-- Add icons to the links using the .nav-icon class
-         with font-awesome or any other icon font library -->
-    <li class="nav-item menu-open">
-      <a href="#" class="nav-link active">
-        <i class="nav-icon fas fa-tachometer-alt"></i>
-        <p>
-          Tasks
-          <i class="right fas fa-angle-left"></i>
-        </p>
-      </a>
-      <ul class="nav nav-treeview">
-        <li class="nav-item">
-          <a href="estimation" class="nav-link">
-            <i class="nav-icon fas fa-edit"></i>
-            <p>Task 1</p>
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <!-- Add icons to the links using the .nav-icon class
+            with font-awesome or any other icon font library -->
+        <li class="nav-item menu-open">
+          <a href="#" class="nav-link active">
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>
+              Tasks
+              <i class="right fas fa-angle-left"></i>
+            </p>
           </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="estimation" class="nav-link">
+                <i class="nav-icon fas fa-edit"></i>
+                <p>Task 1</p>
+              </a>
 
+            </li>
+            <li class="nav-item">
+              <a href="" class="nav-link">
+                <i class="nav-icon fas fa-edit"></i>
+                <p>Task 2</p>
+              </a>
+            </li>
+          </ul>
         </li>
+
         <li class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-edit"></i>
-            <p>Task 2</p>
-          </a>
-        </li>
-        
+            <a href="../users/logout" class="nav-link">
+              <i class="fas fa-sign-out-alt"></i>
+              <p>
+                Log out
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="../users/faq" class="nav-link">
+                <i class="fa fa-question-circle" aria-hidden="true"></i>
+              <p>
+                FAQ
+              </p>
+            </a>
+          </li>
+          
       </ul>
-    </li>
-
-    <li class="nav-item">
-        <a href="../users/logout" class="nav-link">
-          <i class="fas fa-sign-out-alt"></i>
-          <p>
-            Log out
-          </p>
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a href="../users/faq" class="nav-link">
-            <i class="fa fa-question-circle" aria-hidden="true"></i>
-          <p>
-            FAQ
-          </p>
-        </a>
-      </li>
-      
-  </ul>
-</nav>
-<!-- /.sidebar-menu -->
-</div>
-    </div>
-<!-- /.sidebar -->
+    </nav>
+  <!-- /.sidebar-menu -->
+  </div>
+      </div>
+  <!-- /.sidebar -->
 </aside>
       
     
@@ -212,32 +210,68 @@
           </div>
         </section> -->
     
-        <!-- Main content -->
+        <!-- Main content -->/
       <section class="content">
         <div class="container-fluid">
-          <div class="card-header">
-            <h2 class="box-title">Project List</h2>
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Search</h3>
+            </div>
+            <!-- <div class="card-body table-responsive no-padding">
+              <table class="table table-hover">
+                <tbody><tr>
+                  <th>ID</th>                  
+                  <th>Project Name</th>                  
+                  <th>Started date</th>
+                </tr>
+                <!-- <% if (allprojects.length > 0){ %>
+                  <% allprojects.forEach(project => { %>
+                    <tr>
+                      <td><%= project.p_id %></td>
+                      <td><%= project.name %></td>
+                      <td><%= project.start_date.toLocaleDateString() %></td>
+                    </tr>
+                  <% }) %>
+                <% } else { %>
+                  <tr>
+                    <td colspan="3">no projects</td>
+                  </tr>
+                <% } %> -->
+              <!-- </tbody></table>
+            </div> -->
+            <form  action="estimationView" method="POST" >
+              <div class="card-body">  
+                  <div id="err_msg">
+                  <!-- for error msg -->
+                  </div>
+                <div class="form-group">
+                  <label for="e_id">Estimate ID</label>
+                  <input type="text" class="form-control" id="e_id" name="e_id" placeholder="Enter Estimate id" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Show</button>
+            </form>
           </div>
-          <!-- <div class="card card-primary card-outline">
-            <div class="card-header">
-              <h3 class="card-title">Tasks</h3>
-            </div>
-            <div class="card-body">
-              <p>Add your tasks buttons/ report summary or anything here</p>
-              <strong>and link to side nav bar</strong>
-              <div>
-                <a href="#">Task1</a><br>
-                <a href="#">Task2</a><br>
-              </div>
-            </div>
-          </div> -->
 
+          <% if(est_project.length>0) {%> 
           <div class="card card-primary card-outline">
-            <div class="card-header">
-              <h3 class="box-title">Estimate ID-1</h3>
-            </div>
-            <!-- <div class="box-body table-responsive no-padding"> -->
             <div class="card-body table-responsive no-padding">
+              <div class="card-header">
+                <% if(est_project.length>0) {%>
+                  <h4 class="box-title"><%= `Estimate ID: ${est_project[0].e_id}` %></h4>
+                  <h4 class="box-title"><%= `Project Name: ${est_project[0].name}` %></h4>
+                  <!-- <h4 class="box-title">Sended: <% if(est_project[0].submit_status==true){ %>Yes<% } else { %>No<% } %></h4> -->
+                  <% if(est_project[0].submit_status==true){ %>
+                  <h4 class="box-title"><%= `Sended date: ${est_project[0].submit_date.getFullYear()}-${est_project[0].submit_date.getMonth()+1}-${est_project[0].submit_date.getDate()}` %></h4>
+                  <% } %>
+                  <% if(est_project[0].submit_status==false){ %>
+                    <div style="display: flex;flex-direction:row;flex-wrap:nowrap;justify-content:space-between">
+                    <button class="btn btn-primary">Edit</button>
+                    <button class="btn btn-primary">Send</button>
+                    </div>
+                  <% } %>
+                <% }%>
+              </div>
+              
               <table class="table table-bordered table-hover">
                 <tbody><tr>
                   <th>Material</th>                  
@@ -258,34 +292,33 @@
                     </tr>
                     <% totalcost += (estimate.quantity * estimate.m_cost)  %>
                   <% }) %>
-                  <tr>
-                    <td align="center" colspan="4"><b>Total cost</b></td>
-                    <td><b><%= totalcost %></b></td>
-                  </tr>
+                    <tr>
+                      <td align="center" colspan="4"><b>Total cost</b></td>
+                      <td><b><%= totalcost %></b></td>
+                    </tr>
                 <% } else { %>
-                  <p>no records</p>
+                    <tr>
+                      <td align="center" colspan="5">no records</td>
+                    </tr>
                 <% } %>
-              </tbody></table>
+                </tbody>
+              </table>
             </div>
           </div>
+          <% } %>
         </div>
       </section>
-      <!-- /.content -->        
     </div>
-    <!-- /.content-wrapper -->
     <footer class="main-footer">
-      <div class="float-right d-none d-sm-block">
+        <div class="float-right d-none d-sm-block">
         <b>All rights reserved</b>
       </div>
       <strong>Copyright &copy; 2021 <a>SE-Group 12</a>.</strong>
     </footer>
-  
-    <!-- Control Sidebar -->
+
     <aside class="control-sidebar control-sidebar-dark">
       <!-- Control sidebar content goes here -->
     </aside>
-    <!-- /.control-sidebar -->
   </div>
-<!-- ./wrapper -->
 </body>
 <%- include('_footer') %>

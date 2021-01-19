@@ -99,7 +99,7 @@ CREATE OR REPLACE PROCEDURE addMaterialValue(
 LANGUAGE plpgsql
 AS $$
 DECLARE
-    existing_materials VARCHAR(30) := (SELECT m_name from MaterialValue WHERE m_name = val_mname);
+    existing_materials VARCHAR(30) := (SELECT m_name from MaterialValue WHERE m_name = val_mname AND m_amount = val_mmamount);
 BEGIN
     IF (existing_materials is null) THEN
         INSERT INTO MaterialValue(m_name, m_amount, m_cost) VALUES (val_mname,val_mamount, val_mcost);
@@ -133,12 +133,14 @@ END;
 $$;
 
 -------------------test insert-------------------
-INSERT INTO project(p_id,name,start_date,duration) VALUES (1,'first_project','08-01-2021','3 months');
-INSERT INTO project(p_id,name,start_date,duration) VALUES (2,'second_project','09-01-2021','5 months');
+INSERT INTO project(p_id,name,start_date,duration) VALUES (1,'First project','2021-01-01','3 months');
+INSERT INTO project(p_id,name,start_date,duration) VALUES (2,'Second project','2021-01-05','5 months');
+INSERT INTO project(p_id,name,start_date,duration) VALUES (3,'Third project','2021-01-15','6 months');
 
-INSERT INTO estimate(e_id,p_id,create_date,submit_status,submit_date) VALUES (1,1,'08-01-2021','1','09-01-2021');
-INSERT INTO estimate(e_id,p_id,create_date,submit_status,submit_date) VALUES (2,1,'08-01-2021','1','09-01-2021');
-INSERT INTO estimate(e_id,p_id,create_date,submit_status,submit_date) VALUES (3,2,'08-01-2021','1','12-01-2021');
+INSERT INTO estimate(e_id,p_id,create_date,submit_status,submit_date) VALUES (1,1,'2021-01-02','1','2021-01-05');
+INSERT INTO estimate(e_id,p_id,create_date,submit_status,submit_date) VALUES (2,1,'2021-01-06','1','2021-01-09');
+INSERT INTO estimate(e_id,p_id,create_date,submit_status,submit_date) VALUES (3,2,'2021-01-16','1','2021-01-19');
+INSERT INTO estimate(e_id,p_id,create_date,submit_status) VALUES (4,3,'2021-01-19','0');
 
 INSERT INTO MaterialValue(m_name,m_amount,m_cost) VALUES ('Concrete','Cubic yard',10000);
 INSERT INTO MaterialValue(m_name,m_amount,m_cost) VALUES ('Steel','7ft x 80in',40000);
@@ -152,3 +154,4 @@ INSERT INTO est_mat(e_id,m_id,quantity) VALUES (2,2,10);
 INSERT INTO est_mat(e_id,m_id,quantity) VALUES (2,4,8);
 INSERT INTO est_mat(e_id,m_id,quantity) VALUES (3,1,4);
 INSERT INTO est_mat(e_id,m_id,quantity) VALUES (3,2,6);
+INSERT INTO est_mat(e_id,m_id,quantity) VALUES (4,1,6);
