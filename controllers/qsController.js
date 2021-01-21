@@ -3,7 +3,8 @@ const qsService = require('../services/qsServices');
 
 const viewEstimation = async (req, res) => {
     const materials = await qsService.showMaterials();
-    res.render('estimation', {name: req.user.name, materials});
+    const allprojects = await qsService.showAllProjects();
+    res.render('estimation', {name: req.user.name, allprojects,materials});
 }
 
 const viewEstimationView = async (req, res) => {
