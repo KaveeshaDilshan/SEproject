@@ -47,6 +47,10 @@ const viewEstimationView = async (req, res) => {
     res.render('estimationView', {name: req.user.name,estimates,est_project,allprojects});
 }
 
+const viewCreateProject = async (req, res) => {
+    res.render('createProject', {name: req.user.name});
+}
+
 const addNewMaterial = async (req, res) => {
     try{
         await qsService.addNewMaterial(req.body);
@@ -103,6 +107,7 @@ module.exports = {
     addNewestimateMaterial,
     deleteNewestimateMaterial,
     saveNewEstimate,
+    viewCreateProject,
     sendEstimation,
     deleteEstimate
 }

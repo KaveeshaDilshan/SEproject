@@ -21,7 +21,7 @@
                         // alert(response.err);
                         return
                         }
-                        console.log(response);
+                        // alert(response);
                         if (response.result === 'redirect') {
                             //redirecting
                             let baseurl = window.location.origin;
