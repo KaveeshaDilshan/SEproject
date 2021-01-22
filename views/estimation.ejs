@@ -248,6 +248,59 @@
                         <div id="err_msg0">
                           <!-- for error msg -->
                         </div>
+
+                        <div class="form-group">
+                          <label for="material">Choose Material</label>
+                          <select class="form-control" id='material_select' >
+                            <option value="" disabled selected>select a material</option>
+                            <% if (materials.length > 0){ %>
+                              <% materials.forEach(material => { %>
+                                <option><%= material.m_name %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= material.m_amount %></option>
+                              <% }) %>
+                            <% } else { %>
+                                <p>no materials</p>
+                            <% } %>
+                          </select>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="quantity">quantity</label>
+                          <input type="number" step="any" class="form-control" id="quantity_enter" name="quantity" placeholder="Enter material quantity">
+                        </div>
+                        <div>
+                          <button style="background-color: rgb(12,187,50);color: black;" class="btn btn-add" type="button" id="btn-add">Add Material</button>
+                        </div>
+                        <br/>
+                        <% if(estimate_materials.length>0) {%> 
+                        <table id="estimatecreate_table" class="table table-bordered table-striped table-hover">
+                          <thead>
+                            <tr>
+                              <th>#</th>
+                              <th>Material</th>
+                              <th>Size/Description</th>
+                              <th>Quantity</th>
+                              <th>TotalCost</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <% for(var i=0; i< estimate_materials.length; i++){ %>
+                            <tr>
+                              <td><%= i+1 %></td>
+                              <td><%= estimate_materials[i].material_name %></td>
+                              <td><%= estimate_materials[i].material_amount %></td>
+                              <td><%= estimate_materials[i].material_quantity %></td>
+                              <td><%= estimate_materials[i].material_cost %></td>
+                              </tr>
+                            <% } %>
+                          </tbody>
+                        </table>
+                        <br/>
+                        <div>
+                          <button style="background-color: rgb(230, 13, 13);color: black;" class="btn btn-remove " type="button" id="btn-remove">Remove</button>
+                        </div>
+                        <% } %>
+
+                        <br/>
                         <div class="form-group">
                           <label for="project">Select Project</label>
                           <select class="form-control" id='project_select' required>
@@ -256,107 +309,56 @@
                               <% allprojects.forEach(project => { %>
                                 <option><%= project.name %></option>
                                 <% }) %>
-                                <% } else { %>
-                                  <p>no projects</p>
-                                  <% } %>
-                                </select>
-                              </div>
-                              
-                              <div class="form-group">
-                                <label for="material">Choose Material</label>
-                                <select class="form-control" id='material_select' required>
-                                  <option value="" disabled selected>select a material</option>
-                                  <% if (materials.length > 0){ %>
-                                    <% materials.forEach(material => { %>
-                                      <option><%= material.m_name %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= material.m_amount %></option>
-                                    <% }) %>
-                                  <% } else { %>
-                                      <p>no materials</p>
-                                  <% } %>
-                                </select>
-                              </div>
-
-                              <div class="form-group">
-                                <label for="quantity">quantity</label>
-                                <input type="number" step="any" class="form-control" id="quantity_enter" name="quantity" placeholder="Enter material quantity" required>
-                              </div>
-                              <div>
-                                <button style="background-color: rgb(12,187,50);color: black;" class="btn btn-add" type="button" id="btn-add">Add Material</button>
-                              </div>
-                              <br/>
-                              <% if(estimate_materials.length>0) {%> 
-                              <table id="estimatecreate_table" class="table table-bordered table-striped table-hover">
-                                <thead>
-                                  <tr>
-                                    <th>#</th>
-                                    <th>Material</th>
-                                    <th>Size/Description</th>
-                                    <th>Quantity</th>
-                                    <th>TotalCost</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <% for(var i=0; i< estimate_materials.length; i++){ %>
-                                  <tr>
-                                    <td><%= i+1 %></td>
-                                    <td><%= estimate_materials[i].material_name %></td>
-                                    <td><%= estimate_materials[i].material_amount %></td>
-                                    <td><%= estimate_materials[i].material_quantity %></td>
-                                    <td><%= estimate_materials[i].material_cost %></td>
-                                    </tr>
-                                  <% } %>
-                                </tbody>
-                              </table>
-                              <br/>
-                              <div>
-                                <button style="background-color: rgb(230, 13, 13);color: black;" class="btn btn-remove " type="button" id="btn-remove">Remove</button>
-                              </div>
-                              <% } %>
-                              
-                            </div>
-                          <div class="card-footer">
-                            <button type="submit" class="btn btn-primary">Save</button>
+                            <% } else { %>
+                              <p>no projects</p>
+                            <% } %>
+                          </select>
                           </div>
-                        </form>
-                        
-                        </div>
-                        <div class="tab-pane fade" id="custom-tabs-three-profile" role="tabpanel"
-                          aria-labelledby="custom-tabs-three-profile-tab">
-                         <!-- estimation form -->
-                      <div class="card">
-                        <div class="card-header">
-                          <h3 class="card-title">Material Table</h3>
-                        </div>
-                        <!-- /.card-header -->
-                        <div class="card-body">
-                          <table id="example1" class="table table-bordered table-striped">
-                            <thead>
-                              <tr>
-                                <th>#</th>
-                                <th>Name</th>
-                                <th>Size/Description</th>
-                                <th>Cost</th>
-                
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <% for(var i=0; i< materials.length; i++){ %>
-                              <tr>
-                                <td><%= i+1 %></td>
-                                <td><%= materials[i].m_name %></td>
-                                <td><%= materials[i].m_amount %></td>
-                                <td><%= materials[i].m_cost %></td>
-                                </tr>
-                              <% } %>
-                            </tbody>                
-                          </table>
-                        </div>
                       </div>
-                      
-                      <div class="card card-primary">
-                        <div class="card-header">
-                          <h3 class="card-title">Add new material</h3>
-                        </div>
+                      <div class="card-footer">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                      </div>
+                    </form>
+                  </div>
+
+
+                  <div class="tab-pane fade" id="custom-tabs-three-profile" role="tabpanel"
+                    aria-labelledby="custom-tabs-three-profile-tab">
+                    <!-- estimation form -->
+                <div class="card">
+                  <div class="card-header">
+                    <h3 class="card-title">Material Table</h3>
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                    <table id="example1" class="table table-bordered table-striped">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Name</th>
+                          <th>Size/Description</th>
+                          <th>Cost</th>
+          
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% for(var i=0; i< materials.length; i++){ %>
+                        <tr>
+                          <td><%= i+1 %></td>
+                          <td><%= materials[i].m_name %></td>
+                          <td><%= materials[i].m_amount %></td>
+                          <td><%= materials[i].m_cost %></td>
+                          </tr>
+                        <% } %>
+                      </tbody>                
+                    </table>
+                  </div>
+                </div>
+                
+                <div class="card card-primary">
+                  <div class="card-header">
+                    <h3 class="card-title">Add new material</h3>
+                  </div>
 
   <form  id="addNewMaterial-form" >
     <div class="card-body">

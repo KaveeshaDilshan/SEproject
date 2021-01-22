@@ -19,7 +19,7 @@ CREATE TABLE Project (
 );
 
 CREATE TABLE Estimate (
-  E_id int NOT NULL,
+  E_id SERIAL,
   P_id int NOT NULL,
   create_date date NOT NULL,
   submit_status boolean,
@@ -137,10 +137,10 @@ INSERT INTO project(p_id,name,start_date,duration) VALUES (1,'First project','20
 INSERT INTO project(p_id,name,start_date,duration) VALUES (2,'Second project','2021-01-05','5 months');
 INSERT INTO project(p_id,name,start_date,duration) VALUES (3,'Third project','2021-01-15','6 months');
 
-INSERT INTO estimate(e_id,p_id,create_date,submit_status,submit_date) VALUES (1,1,'2021-01-02','1','2021-01-05');
-INSERT INTO estimate(e_id,p_id,create_date,submit_status,submit_date) VALUES (2,1,'2021-01-06','1','2021-01-09');
-INSERT INTO estimate(e_id,p_id,create_date,submit_status,submit_date) VALUES (3,2,'2021-01-16','1','2021-01-19');
-INSERT INTO estimate(e_id,p_id,create_date,submit_status) VALUES (4,3,'2021-01-19','0');
+INSERT INTO estimate(p_id,create_date,submit_status,submit_date) VALUES (1,'2021-01-02','1','2021-01-05');
+INSERT INTO estimate(p_id,create_date,submit_status,submit_date) VALUES (1,'2021-01-06','1','2021-01-09');
+INSERT INTO estimate(p_id,create_date,submit_status,submit_date) VALUES (2,'2021-01-16','1','2021-01-19');
+INSERT INTO estimate(p_id,create_date,submit_status) VALUES (3,'2021-01-19','1');
 
 INSERT INTO MaterialValue(m_name,m_amount,m_cost) VALUES ('Concrete','Cubic yard',10000);
 INSERT INTO MaterialValue(m_name,m_amount,m_cost) VALUES ('Steel','7ft x 80in',40000);

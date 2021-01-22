@@ -28,7 +28,6 @@ const addNewMaterial = async (req, res) => {
 const addNewestimateMaterial = async (req, res) => {
     try{
         const material_select = req.body.material_select;
-        console.log(material_select);
         const material_quantity = req.body.material_quantity;
         let material_name;
         let material_amount;
@@ -42,11 +41,34 @@ const addNewestimateMaterial = async (req, res) => {
         return res.status(200).send({err: `${err}`});
     }
 }
+const deleteNewestimateMaterial = async (req, res) => {
+    try{
+        estimate_materials.pop();
+        return res.status(200).send({result: 'redirect', url: 'estimation', err: ''});
+    }
+    catch(err){
+        return res.status(200).send({err: `${err}`});
+    }
+}
 
+const saveNewEstimate = async (req, res) => {
+    try{
+        const project_name = req.body.p_name;
+        // console.log(estimate_materials);
+        await qsService.saveNewEstimate(project_name,estimate_materials);
+        estimate_materials = []
+        return res.status(200).send({result: 'redirect', url: 'estimation', err: ''});
+        }
+        catch(err){
+            return res.status(200).send({err: `${err}`});
+        }
+}
 
 module.exports = {
     viewEstimation,
     viewEstimationView,
     addNewMaterial,
-    addNewestimateMaterial
+    addNewestimateMaterial,
+    deleteNewestimateMaterial,
+    saveNewEstimate
 }

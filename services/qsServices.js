@@ -12,11 +12,10 @@ class qsService {
     static async addNewMaterial({m_name, m_amount, m_cost}){
         return QS.addNewMaterialTodb(m_name, m_amount, m_cost);
     }
-
-    // static async addNewEstimate({project_select,material_select,quantity_enter}){
-    //     return QS.addNewEstimateTodb(project_select,material_select,quantity_enter);
-    // }
     
+    static async saveNewEstimate(project_name,estimate_materials){
+        return QS.saveNewEstimateTodb(project_name,estimate_materials);
+    }
 
     static async showEstimate({e_id}){
         return QS.getEstimate(e_id);
