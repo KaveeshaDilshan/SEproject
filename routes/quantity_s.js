@@ -7,9 +7,13 @@ const auth = require('../config/auth');
 router.get('/estimation',auth.checkNotAuthenticated, QSController.viewEstimation);
 router.get('/estimationView',auth.checkNotAuthenticated, QSController.viewEstimationView);
 router.post('/estimationView',auth.checkNotAuthenticated, QSController.viewEstimationView);
+router.post('/estimationView/sendEstimate',auth.checkNotAuthenticated, QSController.sendEstimation);
+router.delete('/estimationView/deleteEstimate',QSController.deleteEstimate);
+// router.post('/estimationView/edit',auth.checkNotAuthenticated, QSController.editEstimation);
+
 router.post('/estimation/addNewM', QSController.addNewMaterial);
 router.post('/estimation/addNewestimateMaterial',QSController.addNewestimateMaterial);
-router.delete('/estimation/deleteNewestimateMaterial',QSController.deleteNewestimateMaterial)
+router.delete('/estimation/deleteNewestimateMaterial',QSController.deleteNewestimateMaterial);
 router.post('/estimation/saveNewEstimate',QSController.saveNewEstimate);
 
 

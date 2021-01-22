@@ -241,7 +241,7 @@
             </div> -->
             <form  action="estimationView" method="POST" >
               <div class="card-body">  
-                  <div id="err_msg">
+                  <div id="err_msg4">
                   <!-- for error msg -->
                   </div>
                 <div class="form-group">
@@ -257,7 +257,7 @@
             <div class="card-body table-responsive no-padding">
               <div class="card-header">
                 <% if(est_project.length>0) {%>
-                  <h4 class="box-title"><%= `Estimate ID: ${est_project[0].e_id}` %></h4>
+                  <h4 class="box-title">Estimate ID: <span id="span_edit_estimate"><%= est_project[0].e_id %></span></h4>
                   <h4 class="box-title"><%= `Project Name: ${est_project[0].name}` %></h4>
                   <!-- <h4 class="box-title">Sended: <% if(est_project[0].submit_status==true){ %>Yes<% } else { %>No<% } %></h4> -->
                   <% if(est_project[0].submit_status==true){ %>
@@ -265,8 +265,8 @@
                   <% } %>
                   <% if(est_project[0].submit_status==false){ %>
                     <div style="display: flex;flex-direction:row;flex-wrap:nowrap;justify-content:space-between">
-                    <button class="btn btn-primary">Edit</button>
-                    <button class="btn btn-primary">Send</button>
+                    <button class="btn btn-primary" style="background-color: rgb(230, 13, 13);" type="button" id="btn-edit">Delete</button>
+                    <button class="btn btn-primary" type="button" id="btn-send">Send</button>
                     </div>
                   <% } %>
                 <% }%>

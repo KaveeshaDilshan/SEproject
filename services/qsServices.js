@@ -21,6 +21,14 @@ class qsService {
         return QS.getEstimate(e_id);
     }
     
+    static async sendEstimate(e_id){
+        return QS.sendEstimate(e_id);
+    }
+
+    static async deleteEstimate(e_id){
+        return QS.deleteEstimate(e_id);
+    }
+    
     static async showEst_Project({e_id}){
         return QS.getEst_Project(e_id);
     }
