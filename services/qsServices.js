@@ -36,6 +36,10 @@ class qsService {
         return QS.getAllProjects();
     }
 
+    static async saveNewProject({p_name,p_startDate, p_duration}){
+        return QS.saveNewProjectTodb(p_name,p_startDate, p_duration);
+    }
+    
 }
 
 module.exports = qsService;

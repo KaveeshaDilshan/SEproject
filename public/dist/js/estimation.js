@@ -1,3 +1,4 @@
+
 (function () {
     jQuery(document).ready(function ($) {
         $(document).on('submit', '#addNewMaterial-form', function (e) {
@@ -147,6 +148,56 @@
             }
 
         });
+
+
+
+        $(document).on('submit', '#create_project_form', function (e) {
+            e.preventDefault();
+            var r = confirm("check the project details again!");
+            if (r) {
+                let p_name = $('#p_name').val();
+                let p_startDate = $('#p_startDate').val();
+                let p_duration = $('#p_duration').val();
+                // var d = new Date();
+                // var today = d.getFullYear() + "-" + (d.getMonth()+1) + "-" + d.getDate();
+                // // alert(today);
+                // // alert(p_startDate);
+                // if (Date.parse(p_startDate)<=Date.parse(today)){
+                //     $('#create_p_err_msg').html(`<div class="alert alert-danger" role="alert">Date should be future date</div>`) ;
+                //    return;
+                // }
+                $.ajax({
+                    type: 'POST',
+                    url: '/qs/createProject/saveNewProject',
+                    data: {
+                        'p_name': p_name,
+                        'p_startDate' :p_startDate,
+                        'p_duration' : p_duration,
+                    },
+                    success: function (response) {
+                        if(response.err!==""){
+                        $('#create_p_err_msg').html(`<div class="alert alert-danger" role="alert">${response.err}</div>`) 
+                        // alert(response.err);
+                        return
+                        }
+                        // console.log(response);
+                        if (response.result === 'redirect') {
+                            //redirecting
+                            let baseurl = window.location.origin;
+                            console.log(baseurl);
+                            baseurl = baseurl + '/qs/';
+                            let url = baseurl + response.url;
+                            window.location.replace(url);
+                        }
+                    },
+                    error: function (res) {
+                    }
+                });
+            }
+
+        });
+
+
 
 
     })

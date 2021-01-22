@@ -16,6 +16,7 @@ router.post('/estimation/addNewM', QSController.addNewMaterial);
 router.post('/estimation/addNewestimateMaterial',QSController.addNewestimateMaterial);
 router.delete('/estimation/deleteNewestimateMaterial',QSController.deleteNewestimateMaterial);
 router.post('/estimation/saveNewEstimate',QSController.saveNewEstimate);
+router.post('/createProject/saveNewProject', QSController.saveNewProject);
 
 
 module.exports = router;
