@@ -218,86 +218,148 @@
         <!-- Main content -->
         <section class="content">
           <div class="container-fluid">
-          
+            <div class="card card-primary card-outline card-tabs">
+              <div class="card-header p-0 pt-1 border-bottom-0">
+                <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link active" id="custom-tabs-three-home-tab" data-toggle="pill"
+                      href="#custom-tabs-three-home" role="tab" aria-controls="custom-tabs-three-home"
+                      aria-selected="true">Create Estimation</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="custom-tabs-three-profile-tab" data-toggle="pill"
+                      href="#custom-tabs-three-profile" role="tab" aria-controls="custom-tabs-three-profile"
+                      aria-selected="false">Material</a>
+                  </li>
 
-                  <div class="card card-primary card-outline card-tabs">
-                    <div class="card-header p-0 pt-1 border-bottom-0">
-                      <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
-                        <li class="nav-item">
-                          <a class="nav-link active" id="custom-tabs-three-home-tab" data-toggle="pill"
-                            href="#custom-tabs-three-home" role="tab" aria-controls="custom-tabs-three-home"
-                            aria-selected="true">Create Estimation</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" id="custom-tabs-three-profile-tab" data-toggle="pill"
-                            href="#custom-tabs-three-profile" role="tab" aria-controls="custom-tabs-three-profile"
-                            aria-selected="false">Material</a>
-                        </li>
-
-                      </ul>
+                </ul>
+              </div>
+              <div class="card-body">
+                <div class="tab-content" id="custom-tabs-three-tabContent">
+                  <div class="tab-pane fade show active" id="custom-tabs-three-home" role="tabpanel"
+                    aria-labelledby="custom-tabs-three-home-tab">
+                    
+                    <div class="card-header">
+                      <h3 class="card-title">Create new Estimation</h3>
                     </div>
-                    <div class="card-body">
-                      <div class="tab-content" id="custom-tabs-three-tabContent">
-                        <div class="tab-pane fade show active" id="custom-tabs-three-home" role="tabpanel"
-                          aria-labelledby="custom-tabs-three-home-tab">
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin malesuada lacus ullamcorper dui
-                          molestie, sit amet congue quam finibus. Etiam ultricies nunc non magna feugiat commodo. Etiam
-                          odio magna, mollis auctor felis vitae, ullamcorper ornare ligula. Proin pellentesque tincidunt
-                          nisi, vitae ullamcorper felis aliquam id. Pellentesque habitant morbi tristique senectus et
-                          netus et malesuada fames ac turpis egestas. Proin id orci eu lectus blandit suscipit.
-                          Phasellus porta, ante et varius ornare, sem enim sollicitudin eros, at commodo leo est vitae
-                          lacus. Etiam ut porta sem. Proin porttitor porta nisl, id tempor risus rhoncus quis. In in
-                          quam a nibh cursus pulvinar non consequat neque. Mauris lacus elit, condimentum ac condimentum
-                          at, semper vitae lectus. Cras lacinia erat eget sapien porta consectetur.
-                        </div>
-                        <div class="tab-pane fade" id="custom-tabs-three-profile" role="tabpanel"
-                          aria-labelledby="custom-tabs-three-profile-tab">
-                         <!-- estimation form -->
-                      <div class="card">
-                        <div class="card-header">
-                          <h3 class="card-title">Material Table</h3>
-                          <!-- <button type="button" class="btn btn-primary btn-sm float-right ">Save</button>
-                          <button type="button" class="btn btn-primary btn-sm float-right  mr-1">Add</button> -->
-                          
-                        </div>
-                        <!-- /.card-header -->
-                        <div class="card-body">
-                          <table id="example1" class="table table-bordered table-striped">
-                            <thead>
-                              <tr>
-                                <th>#</th>
-                                <th>Name</th>
-                                <th>Size/Description</th>
-                                <th>Cost</th>
-                
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <% for(var i=0; i< materials.length; i++){ %>
-                              <tr>
-                                <td><%= i+1 %></td>
-                                <td><%= materials[i].m_name %></td>
-                                <td><%= materials[i].m_amount %></td>
-                                <td><%= materials[i].m_cost %></td>
-                                </tr>
-                              <% } %>
-                            </tbody>
-                
-                          </table>
-                        </div>
-                        <!-- /.card-body -->
-                      </div>
-                      <!-- /.card -->
 
-                      
-<!-- start add materials -->
-<div class="card card-primary">
-  <div class="card-header">
-    <h3 class="card-title">Add new material</h3>
-  </div>
-  <!-- /.card-header -->
-  <!-- form start -->
-  <!-- action="/qs/estimation/addNewM" method="POST" -->
+                    <form  action="estimation" method="POST" id="estimate_form">
+                      <div class="card-body">
+                        <div id="err_msg0">
+                          <!-- for error msg -->
+                        </div>
+
+                        <div class="form-group">
+                          <label for="material">Choose Material</label>
+                          <select class="form-control" id='material_select' >
+                            <option value="" disabled selected>select a material</option>
+                            <% if (materials.length > 0){ %>
+                              <% materials.forEach(material => { %>
+                                <option><%= material.m_name %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= material.m_amount %></option>
+                              <% }) %>
+                            <% } else { %>
+                                <p>no materials</p>
+                            <% } %>
+                          </select>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="quantity">quantity</label>
+                          <input type="number" step="any" class="form-control" id="quantity_enter" name="quantity" placeholder="Enter material quantity">
+                        </div>
+                        <div>
+                          <button style="background-color: rgb(12,187,50);color: black;" class="btn btn-add" type="button" id="btn-add">Add Material</button>
+                        </div>
+                        <br/>
+                        <% if(estimate_materials.length>0) {%> 
+                        <table id="estimatecreate_table" class="table table-bordered table-striped table-hover">
+                          <thead>
+                            <tr>
+                              <th>#</th>
+                              <th>Material</th>
+                              <th>Size/Description</th>
+                              <th>Quantity</th>
+                              <th>TotalCost</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <% for(var i=0; i< estimate_materials.length; i++){ %>
+                            <tr>
+                              <td><%= i+1 %></td>
+                              <td><%= estimate_materials[i].material_name %></td>
+                              <td><%= estimate_materials[i].material_amount %></td>
+                              <td><%= estimate_materials[i].material_quantity %></td>
+                              <td><%= estimate_materials[i].material_cost %></td>
+                              </tr>
+                            <% } %>
+                          </tbody>
+                        </table>
+                        <br/>
+                        <div>
+                          <button style="background-color: rgb(230, 13, 13);color: black;" class="btn btn-remove " type="button" id="btn-remove">Remove</button>
+                        </div>
+                        <% } %>
+
+                        <br/>
+                        <div class="form-group">
+                          <label for="project">Select Project</label>
+                          <select class="form-control" id='project_select' required>
+                            <option value="" disabled selected>select a project</option>
+                            <% if (allprojects.length > 0){ %>
+                              <% allprojects.forEach(project => { %>
+                                <option><%= project.name %></option>
+                                <% }) %>
+                            <% } else { %>
+                              <p>no projects</p>
+                            <% } %>
+                          </select>
+                          </div>
+                      </div>
+                      <div class="card-footer">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                      </div>
+                    </form>
+                  </div>
+
+
+                  <div class="tab-pane fade" id="custom-tabs-three-profile" role="tabpanel"
+                    aria-labelledby="custom-tabs-three-profile-tab">
+                    <!-- estimation form -->
+                <div class="card">
+                  <div class="card-header">
+                    <h3 class="card-title">Material Table</h3>
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                    <table id="example1" class="table table-bordered table-striped">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Name</th>
+                          <th>Size/Description</th>
+                          <th>Cost</th>
+          
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% for(var i=0; i< materials.length; i++){ %>
+                        <tr>
+                          <td><%= i+1 %></td>
+                          <td><%= materials[i].m_name %></td>
+                          <td><%= materials[i].m_amount %></td>
+                          <td><%= materials[i].m_cost %></td>
+                          </tr>
+                        <% } %>
+                      </tbody>                
+                    </table>
+                  </div>
+                </div>
+                
+                <div class="card card-primary">
+                  <div class="card-header">
+                    <h3 class="card-title">Add new material</h3>
+                  </div>
+
   <form  id="addNewMaterial-form" >
     <div class="card-body">
     
@@ -328,11 +390,6 @@
     </div>
   </form>
 </div>
-<!-- /.card -->
-<!-- close add materials -->
-
-
-
 
                         </div>
 
@@ -360,10 +417,6 @@
       </aside>
       <!-- /.control-sidebar -->
     </div>
-    <!-- ./wrapper -->
-
-
   </body>
-
   <%- include('_footer') %>
-    </div>
+</div>
