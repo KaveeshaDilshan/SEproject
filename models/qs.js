@@ -51,6 +51,24 @@ class QS {
         return out.rows;
     }
     
+    static async sendEstimate(e_id) {
+        console.log(`sendEstimate`);
+        const out1 = await db.query(`select to_char(current_date :: DATE, 'yyyy-mm-dd');`);
+        const today = out1.rows[0].to_char;
+        const query2=`update estimate set submit_status=$1, submit_date=$2 where e_id=$3;`;
+        const out2 = await db.query(query2,['yes',today,e_id]);
+        return out2.rows;
+    }
+
+    static async deleteEstimate(e_id) {
+        console.log(`deleteEstimate`);
+        const query1=`delete from est_mat where e_id=$1;`;
+        await db.query(query1,[e_id]);
+        const query2=`delete from estimate where e_id=$1;`;
+        const out2 = await db.query(query2,[e_id]);
+        return out2.rows;
+    }
+    
     static async getEst_Project(e_id) {
         console.log("getProject");
         const query=`select project.p_id,project.name,project.start_date,estimate.e_id,estimate.submit_status,estimate.create_date,estimate.submit_date from estimate,project where estimate.p_id=project.p_id and estimate.e_id=$1`;

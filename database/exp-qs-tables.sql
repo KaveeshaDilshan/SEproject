@@ -3,6 +3,7 @@ DROP TABLE IF EXISTS Estimate CASCADE;
 DROP TABLE IF EXISTS MaterialValue CASCADE;
 DROP TABLE IF EXISTS Est_Mat CASCADE;
 DROP TABLE IF EXISTS Material_Order CASCADE;
+DROP TABLE IF EXISTS Order_items CASCADE;
 DROP TABLE IF EXISTS Machine_Request CASCADE;
 DROP TABLE IF EXISTS Machine CASCADE;
 DROP TABLE IF EXISTS Req_Mac CASCADE;
@@ -11,7 +12,7 @@ DROP TABLE IF EXISTS Req_Mac CASCADE;
 
 ---expedi/qs ----
 CREATE TABLE Project (
-  P_id int NOT NULL,
+  P_id SERIAL,
   name varchar(30) NOT NULL,
   start_date date,
   duration varchar(30),
@@ -101,12 +102,12 @@ CREATE OR REPLACE PROCEDURE addMaterialValue(
 LANGUAGE plpgsql
 AS $$
 DECLARE
-    existing_materials VARCHAR(30) := (SELECT m_name from MaterialValue WHERE m_name = val_mname AND m_amount = val_mmamount);
+    existing_materials VARCHAR(30) := (SELECT m_name from MaterialValue WHERE m_name = val_mname AND m_amount = val_mamount);
 BEGIN
     IF (existing_materials is null) THEN
         INSERT INTO MaterialValue(m_name, m_amount, m_cost) VALUES (val_mname,val_mamount, val_mcost);
     ELSE
-        RAISE EXCEPTION '% is already exit', val_mname;
+        RAISE EXCEPTION '% % is already exit', val_mname,val_mamount;
     END IF;
 END;
 $$;
@@ -135,14 +136,14 @@ END;
 $$;
 
 -------------------test insert-------------------
-INSERT INTO project(p_id,name,start_date,duration) VALUES (1,'First project','2021-01-01','3 months');
-INSERT INTO project(p_id,name,start_date,duration) VALUES (2,'Second project','2021-01-05','5 months');
-INSERT INTO project(p_id,name,start_date,duration) VALUES (3,'Third project','2021-01-15','6 months');
+INSERT INTO project(name,start_date,duration) VALUES ('First project','2021-01-01','3 months');
+INSERT INTO project(name,start_date,duration) VALUES ('Second project','2021-01-05','5 months');
+INSERT INTO project(name,start_date,duration) VALUES ('Third project','2021-01-15','6 months');
 
 INSERT INTO estimate(p_id,create_date,submit_status,submit_date) VALUES (1,'2021-01-02','1','2021-01-05');
 INSERT INTO estimate(p_id,create_date,submit_status,submit_date) VALUES (1,'2021-01-06','1','2021-01-09');
 INSERT INTO estimate(p_id,create_date,submit_status,submit_date) VALUES (2,'2021-01-16','1','2021-01-19');
-INSERT INTO estimate(p_id,create_date,submit_status) VALUES (3,'2021-01-19','1');
+INSERT INTO estimate(p_id,create_date,submit_status) VALUES (3,'2021-01-19','0');
 
 INSERT INTO MaterialValue(m_name,m_amount,m_cost) VALUES ('Concrete','Cubic yard',10000);
 INSERT INTO MaterialValue(m_name,m_amount,m_cost) VALUES ('Steel','7ft x 80in',40000);

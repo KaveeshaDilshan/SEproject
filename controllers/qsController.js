@@ -1,6 +1,7 @@
 const qsService = require('../services/qsServices');
 
 var estimate_materials = []
+let e_id_send;
 
 const viewEstimation = async (req, res) => {
     const materials = await qsService.showMaterials();
@@ -8,7 +9,38 @@ const viewEstimation = async (req, res) => {
     res.render('estimation', {name: req.user.name, allprojects,materials,estimate_materials});
 }
 
+const sendEstimation = async (req, res) => {
+    try{
+        console.log(e_id_send);
+        await qsService.sendEstimate(e_id_send);
+        e_id_send ="";
+        return res.status(200).send({result: 'redirect', url: 'estimationView', err: ''});
+        }
+        catch(err){
+            return res.status(200).send({err: `${err}`});
+        }
+}
+
+const deleteEstimate = async (req, res) => {
+    try{
+        console.log(e_id_send);
+        await qsService.deleteEstimate(e_id_send);
+        e_id_send ="";
+        return res.status(200).send({result: 'redirect', url: 'estimationView', err: ''});
+    }
+    catch(err){
+        return res.status(200).send({err: `${err}`});
+    }
+}
+
+// const editEstimation = async (req, res) => {
+//     const materials = await qsService.showMaterials();
+//     const allprojects = await qsService.showAllProjects();
+//     res.render('estimation', {name: req.user.name, allprojects,materials,estimate_materials});
+// }
+
 const viewEstimationView = async (req, res) => {
+    e_id_send = req.body.e_id;
     const estimates = await qsService.showEstimate(req.body);
     const est_project = await qsService.showEst_Project(req.body);
     const allprojects = await qsService.showAllProjects();
@@ -21,11 +53,11 @@ const viewCreateProject = async (req, res) => {
 
 const addNewMaterial = async (req, res) => {
     try{
-    await qsService.addNewMaterial(req.body);
-    return res.status(200).send({result: 'redirect', url: 'estimation', err: ''});
-    }
-    catch(err){
-        return res.status(200).send({err: `${err}`});
+        await qsService.addNewMaterial(req.body);
+        return res.status(200).send({result: 'redirect', url: 'estimation', err: ''});
+        }
+        catch(err){
+            return res.status(200).send({err: `${err}`});
     }
 }
 
@@ -85,5 +117,7 @@ module.exports = {
     deleteNewestimateMaterial,
     saveNewEstimate,
     viewCreateProject,
-    saveNewProject
+    saveNewProject,
+    sendEstimation,
+    deleteEstimate
 }
