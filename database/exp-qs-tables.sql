@@ -146,6 +146,7 @@ INSERT INTO MaterialValue(m_name,m_amount,m_cost) VALUES ('Concrete','Cubic yard
 INSERT INTO MaterialValue(m_name,m_amount,m_cost) VALUES ('Steel','7ft x 80in',40000);
 INSERT INTO MaterialValue(m_name,m_amount,m_cost) VALUES ('Pine','2in x 4in - 12ft',600);
 INSERT INTO MaterialValue(m_name,m_amount,m_cost) VALUES ('Pine','2in x 4in - 16ft',800);
+INSERT INTO MaterialValue(m_name,m_amount,m_cost) VALUES ('Latex Paint','Gallon 2 coats',3000);
 
 INSERT INTO est_mat(e_id,m_id,quantity) VALUES (1,1,5);
 INSERT INTO est_mat(e_id,m_id,quantity) VALUES (1,2,3);

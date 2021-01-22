@@ -6,6 +6,13 @@ class QS {
         const out = await db.query(query);
         return out.rows;
     }
+
+    static async getMaterialtoEstimate(material_name,material_amount) {
+        console.log("getMaterials");
+        const query=`SELECT * FROM materialvalue WHERE m_name=$1 AND m_amount=$2`;
+        const out = await db.query(query,[material_name,material_amount]);
+        return out.rows;
+    }
     
     static async addNewMaterialTodb(m_name, m_amount, m_cost) {
         console.log("getMaterialValues");
@@ -13,6 +20,13 @@ class QS {
         const out = await db.query(query,[m_name, m_amount, m_cost]);
         return out.rows;
     }
+    
+    // static async addNewEstimateTodb(project_select,material_select,quantity_enter) {
+    //     console.log("getMaterialValues");
+    //     const query=`CALL addMaterialValue($1,$2,$3)`;
+    //     const out = await db.query(query,[m_name, m_amount, m_cost]);
+    //     return out.rows;
+    // }
 
     static async getEstimate(e_id) {
         console.log(`getEstimate`);
