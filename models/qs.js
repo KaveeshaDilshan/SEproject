@@ -63,6 +63,29 @@ class QS {
         const out = await db.query(query);
         return out.rows;
     }
+    static async saveNewProjectTodb(project_name,project_startDate, project_duration) {
+        console.log("saveNewProjectTodb");
+        const allprojects =await this.getAllProjects();
+       var similarProject="";
+        allprojects.forEach(async project => {
+            console.log(project);
+            if(project_name==project.name){
+                similarProject=1;
+            }
+        })
+        if(similarProject != ""){
+            throw ('This project name is alrredy there, please choose an another name.');
+        }else{
+        const query=`INSERT INTO project(name, start_date, duration) VALUES($1,$2,$3)`;
+        const out = await db.query(query,[project_name,project_startDate, project_duration]);
+        return out.rows;
+        }
+    }
+
+
 }
+
+
+
 
 module.exports = QS;

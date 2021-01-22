@@ -67,6 +67,15 @@ const saveNewEstimate = async (req, res) => {
             return res.status(200).send({err: `${err}`});
         }
 }
+const saveNewProject = async (req, res) => {
+    try{
+        const aa = await qsService.saveNewProject(req.body);
+        return res.status(200).send({result: 'redirect', url: 'createProject', err: ''});
+        }
+        catch(err){
+            return res.status(200).send({err: `${err}`});
+        }
+}
 
 module.exports = {
     viewEstimation,
@@ -75,5 +84,6 @@ module.exports = {
     addNewestimateMaterial,
     deleteNewestimateMaterial,
     saveNewEstimate,
-    viewCreateProject
+    viewCreateProject,
+    saveNewProject
 }
