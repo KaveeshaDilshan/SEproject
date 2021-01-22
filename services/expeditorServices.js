@@ -10,13 +10,8 @@ class expeditorService {
     }
     static async addNewOrder({final_materials,final_quantiies, optionProject, shop_name}){
         const project_id = await expeditor.getProjectId(optionProject);
-        const today = new Date();
-        // const day = ("0" + today.getDate()).slice(-2);
-        // const month = ("0" + (today.getMonth() + 1)).slice(-2);
-        // const year = today.getFullYear();  
-        // const orderDate= day + '-' + month + '-' + year;
        
-        const o_id =(await expeditor.addToMaterialOrder(project_id.p_id, today, shop_name)).o_id;
+        const o_id =(await expeditor.addToMaterialOrder(project_id.p_id, shop_name)).o_id;
         //  console.log(final_materials);
         //  console.log(final_quantiies);
         //  console.log(o_id);
@@ -25,7 +20,13 @@ class expeditorService {
     }
 
     static async sendOrder({o_id}){
-        return expeditor.changeOrderState(o_id);
+        const today = new Date();
+        // const day = (("0" + today.getDate()).slice(-2));
+        // const month = ("0" + (today.getMonth() + 1)).slice(-2);
+        // const year = today.getFullYear();  
+        // const orderDate= year+ '-' + month + '-' +day ;
+        // console.log(orderDate);
+        return expeditor.changeOrderState(o_id,today);
     }
     static async deleteOrder({o_id}){
         return expeditor.deleteOrder(o_id);
@@ -36,7 +37,7 @@ class expeditorService {
         const estimations = await expeditor.estimationsOfProject(project_id.p_id);
         //  console.log(estimations[0]);
         const orders = await expeditor.ordersOfProject(project_id.p_id);
-        // console.log(orders);
+        console.log(orders);
         return [orders, estimations];
     }
     static async showCompleteOrder({o_id}){

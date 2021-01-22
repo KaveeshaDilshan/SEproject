@@ -23,12 +23,12 @@ class expeditor {
         return out.rows[0];
     } 
     
-    static async addToMaterialOrder(project_id, orderDate, shop_name) {
+    static async addToMaterialOrder(project_id, shop_name) {
         console.log("addToMaterialOrder");
-        const query=`INSERT INTO Material_Order (P_id, shop_name, order_date, ordered, received)
-                     VALUES($1,$2,$3,$4,$5)
+        const query=`INSERT INTO Material_Order (P_id, shop_name, ordered, received)
+                     VALUES($1,$2,$3,$4)
                      RETURNING O_id;`;
-        const out = await db.query(query,[project_id, shop_name, orderDate, 'no', 'yes']);
+        const out = await db.query(query,[project_id, shop_name, 'no', 'no']);
         return out.rows[0];
     }
     
@@ -40,10 +40,10 @@ class expeditor {
         return out.rows;
     }
    
-    static async  changeOrderState(o_id) {
+    static async  changeOrderState(o_id,today) {
         console.log("changeOrderState");
-        const query=`UPDATE Material_Order SET ordered= 'yes' WHERE O_id = $1`;
-        const out = await db.query(query,[o_id]);
+        const query=`UPDATE Material_Order SET ordered= 'yes',order_date=$1 WHERE O_id = $2`;
+        const out = await db.query(query,[today,o_id]);
         return out.rows;
     }
 

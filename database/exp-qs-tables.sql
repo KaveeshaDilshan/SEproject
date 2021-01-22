@@ -50,7 +50,6 @@ CREATE TABLE Material_Order (
   O_id SERIAL,
   P_id int NOT NULL,
   shop_name varchar(30) NOT NULL,
-  save_date date,
   order_date date,
   ordered boolean,
   received boolean,
