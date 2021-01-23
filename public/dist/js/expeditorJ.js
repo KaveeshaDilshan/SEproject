@@ -30,14 +30,14 @@
                             if (orders.length !== 0) {
                                 $('#order_view').text('');
                                 var table = `
-                              
+                                <h3>All Orders for ${optionProject} </h3>
                                 <table class="table table-bordered table-hover" id="view_order_table">
                                 <thead>
                                   <tr>
                                     <th style="width: 10px">#</th>
                                     <th>Order_ID</th>
-                                    <th>Order_Date</th>
                                     <th>Shop_Name</th>
+                                    <th>Order_Date</th>
                                     <th style="width: 120px">Order_state</th>
                                     
                                   </tr>
@@ -49,8 +49,14 @@
                                     <tr>
                                         <td>${num + 1}</td>
                                         <td>${order.o_id}</td>
-                                        <td>${(order.order_date).substring(0, 10)}</td>
-                                        <td>${order.shop_name}</td>
+                                        <td>${order.shop_name}</td>`;
+                                        if(order.order_date!==null){
+                                            table += `<td>${order.order_date.substring(0, 8)}${order.order_date.substring(8, 10)*1 + 1}</td>`;
+                                        }else{
+                                            table += `<td></td>`;
+                                        }
+                                   
+                                    table += `
                                         <td>${order.ordered}</td>
                                     </tr>
                                     `;
@@ -86,7 +92,7 @@
                                     <tr>
                                         <td>${num + 1}</td>
                                         <td>${estimation.e_id}</td>
-                                        <td>${(estimation.submit_date).substring(0, 10)}</td>
+                                        <td>${(estimation.submit_date).substring(0, 8)}${(estimation.submit_date).substring(8, 10)* +1}</td>
                                        
                                     </tr>
                                     `;
