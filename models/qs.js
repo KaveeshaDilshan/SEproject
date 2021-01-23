@@ -82,6 +82,13 @@ class QS {
         return out.rows;
     }
 
+    static async ViewProjects(from_date,to_date) {
+        console.log("viewProject");
+        const query=`select p_id,name,TO_CHAR(start_date :: DATE,'yyyy-mm-dd'),duration from project where start_date between $1 and $2;`;
+        const out = await db.query(query,[from_date,to_date]);
+        return out.rows;
+    }
+
     static async getProjectIdFromName(name) {
         console.log("getProjectId");
         const query=`SELECT p_id FROM project WHERE name = $1`;

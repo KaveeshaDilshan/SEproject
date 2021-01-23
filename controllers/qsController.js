@@ -61,6 +61,17 @@ const viewCreateProject = async (req, res) => {
     res.render('createProject', {name: req.user.name});
 }
 
+const viewProject = async (req, res) => {
+    try{
+        const viewProjects = await qsService.ViewProjects(req.body);
+        console.log(viewProjects);
+        return res.status(200).send({viewProjects:viewProjects, err: ''});
+    } 
+    catch(err){
+        return res.status(200).send({err: `${err}`});
+    }
+}
+
 const addNewMaterial = async (req, res) => {
     try{
         await qsService.addNewMaterial(req.body);
@@ -119,6 +130,8 @@ const saveNewProject = async (req, res) => {
         }
 }
 
+
+
 module.exports = {
     viewEstimation,
     viewEstimationView,
@@ -130,5 +143,6 @@ module.exports = {
     saveNewProject,
     sendEstimation,
     deleteEstimate,
-    getProjectEstimations
+    getProjectEstimations,
+    viewProject
 }
