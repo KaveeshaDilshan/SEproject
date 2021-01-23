@@ -8,6 +8,7 @@ router.get('/estimation',auth.checkNotAuthenticated, QSController.viewEstimation
 router.get('/estimationView',auth.checkNotAuthenticated, QSController.viewEstimationView);
 router.get('/createProject',auth.checkNotAuthenticated, QSController.viewCreateProject);
 router.post('/estimationView',auth.checkNotAuthenticated, QSController.viewEstimationView);
+router.post('/estimationView/getProjectEstimations',auth.checkNotAuthenticated, QSController.getProjectEstimations);
 router.post('/estimationView/sendEstimate',auth.checkNotAuthenticated, QSController.sendEstimation);
 router.delete('/estimationView/deleteEstimate',QSController.deleteEstimate);
 // router.post('/estimationView/edit',auth.checkNotAuthenticated, QSController.editEstimation);

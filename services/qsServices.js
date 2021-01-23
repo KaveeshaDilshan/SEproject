@@ -32,8 +32,17 @@ class qsService {
     static async showEst_Project({e_id}){
         return QS.getEst_Project(e_id);
     }
+
     static async showAllProjects(){
         return QS.getAllProjects();
+    }
+    
+    static async getProjectIdFromName(name){
+        return QS.getProjectIdFromName(name);
+    }
+
+    static async getProjectEstimations(p_id){
+        return QS.getProjectEstimations(p_id);
     }
 
     static async saveNewProject({p_name,p_startDate, p_duration}){

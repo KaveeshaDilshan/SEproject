@@ -220,39 +220,39 @@
       <section class="content">
         <div class="container-fluid">
           <div class="card card-primary">
-            <div class="card-header">
-              <h3 class="card-title">Search</h3>
+            <div class="card-body">  
+              <div id="err_msg4">
+              <!-- for error msg -->
+              </div>
+              <div class="form-group">
+                <label>Select Project</label>
+                <select class="form-control" id='project_select2'>
+                  <option>Select Project</option>
+                  <% if (allprojects.length> 0){ %>
+                    <% allprojects.forEach(project=> { %>
+                      <option><%= project.name %></option>
+                    <% }) %>
+                  <% } else { %>
+                    <p>no projects</p>
+                  <% } %>
+                </select>
+              </div>
             </div>
-            <!-- <div class="card-body table-responsive no-padding">
-              <table class="table table-hover">
-                <tbody><tr>
-                  <th>ID</th>                  
-                  <th>Project Name</th>                  
-                  <th>Started date</th>
-                </tr>
-                <!-- <% if (allprojects.length > 0){ %>
-                  <% allprojects.forEach(project => { %>
-                    <tr>
-                      <td><%= project.p_id %></td>
-                      <td><%= project.name %></td>
-                      <td><%= project.start_date.toLocaleDateString() %></td>
-                    </tr>
-                  <% }) %>
-                <% } else { %>
-                  <tr>
-                    <td colspan="3">no projects</td>
-                  </tr>
-                <% } %> -->
-              <!-- </tbody></table>
-            </div> -->
-            <form  action="estimationView" method="POST" >
+            <div class="card-body alert  text-center" id="All_Estimate_view2">
+              <p style="background-color: rgb(105, 236, 145);text-align: center; ">Select a project to see Estimations</p>
+            </div>
+          </div>
+
+
+          <div class="card card-primary">  
+            <form  id="search_estimate_byID" action="estimationView" method="POST">
               <div class="card-body">  
                   <div id="err_msg4">
                   <!-- for error msg -->
                   </div>
                 <div class="form-group">
-                  <label for="e_id">Estimate ID</label>
-                  <input type="text" class="form-control" id="e_id" name="e_id" placeholder="Enter Estimate id" required>
+                  <label for="e_id">Enter Estimate ID to see Estimation</label>
+                  <input type="number" class="form-control" id="e_id1" name="e_id" placeholder="Enter Estimate id" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Show</button>
             </form>
