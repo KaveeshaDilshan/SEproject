@@ -37,7 +37,7 @@ class expeditorService {
         const estimations = await expeditor.estimationsOfProject(project_id.p_id);
         //  console.log(estimations[0]);
         const orders = await expeditor.ordersOfProject(project_id.p_id);
-        console.log(orders);
+        // console.log(orders);
         return [orders, estimations];
     }
     static async showCompleteOrder({o_id}){
