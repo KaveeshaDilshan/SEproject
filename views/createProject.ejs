@@ -217,100 +217,105 @@
             </aside>
 
 
-            <!-- Content Wrapper. Contains page content -->
-            <div class="content-wrapper">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <br/>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="card card-primary card-outline card-tabs">
+                    <div class="card-header p-0 pt-1 border-bottom-0">
+                        <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="custom-tabs-three-home-tab" data-toggle="pill"
+                                    href="#custom-tabs-three-home" role="tab"
+                                    aria-controls="custom-tabs-three-home" aria-selected="true">Create Project</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="custom-tabs-three-profile-tab" data-toggle="pill"
+                                    href="#custom-tabs-three-profile" role="tab"
+                                    aria-controls="custom-tabs-three-profile" aria-selected="false">View Project</a>
+                            </li>
 
-                <!-- <section class="content-header">
-          <div class="container-fluid">
-            <div class="row mb-2">
-              <div class="col-sm-12">
-                <h1>Icons</h1>
-                <%- include('_card') %>
-              </div>
-            </div>
-          </div>
-        </section> -->
-
-                <!-- Main content -->
-    </br>
-                <section class="content">
-                    <div class="container-fluid">
-                        <div class="card card-primary card-outline card-tabs">
-                            <div class="card-header p-0 pt-1 border-bottom-0">
-                                <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
-                                    <li class="nav-item">
-                                        <a class="nav-link active" id="custom-tabs-three-home-tab" data-toggle="pill"
-                                            href="#custom-tabs-three-home" role="tab"
-                                            aria-controls="custom-tabs-three-home" aria-selected="true">Create Project</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="custom-tabs-three-profile-tab" data-toggle="pill"
-                                            href="#custom-tabs-three-profile" role="tab"
-                                            aria-controls="custom-tabs-three-profile" aria-selected="false">View Project</a>
-                                    </li>
-
-                                </ul>
-                            </div>
-                            <div class="card-body">
-                                <div class="tab-content" id="custom-tabs-three-tabContent">
-                                    <div class="tab-pane fade show active" id="custom-tabs-three-home" role="tabpanel"
-                                        aria-labelledby="custom-tabs-three-home-tab">
-                                         <!-- start - create project -->
-                                        <div class="card card-primary">
-                                            <div class="card-header">
-                                              <h3 class="card-title">Create new project</h3>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content" id="custom-tabs-three-tabContent">
+                            <div class="tab-pane fade show active" id="custom-tabs-three-home" role="tabpanel"
+                                aria-labelledby="custom-tabs-three-home-tab">
+                                    <!-- start - create project -->
+                                <div class="card card-primary">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Create new project</h3>
+                                    </div>
+                                
+                                    <form  id="create_project_form" >
+                                        <div class="card-body">
+                                            <div id="create_p_err_msg">
+                                            <!-- for error msg -->
                                             </div>
-                          
-                            <form  id="create_project_form" >
-                              <div class="card-body">
-                              
-                                  <div id="create_p_err_msg">
-                                  <!-- for error msg -->
-                                  </div>
-                                
-                                <div class="form-group">
-                                  <label for="">Project Name</label>
-                                  <input type="text" class="form-control" id="p_name" name="p_name" placeholder="Enter project name" required>
+                                            <div class="form-group">
+                                            <label for="">Project Name</label>
+                                            <input type="text" class="form-control" id="p_name" name="p_name" placeholder="Enter project name" required>
+                                            </div>
+                                            <div class="form-group">
+                                            <label for="">Start Date</label>
+                                            <input type="date" class="form-control" id="p_startDate" name="p_startDate" placeholder="Enter project starting date" required>
+                                            </div>
+                                            <div class="form-group">
+                                            <label for="">Duration</label>
+                                            <input type="text" class="form-control" id="p_duration" name="p_duration" placeholder="Enter project duration" required>
+                                            </div>
+                                        </div>
+                                        <!-- /.card-body -->
+                                        <div class="card-footer">
+                                            <button type="submit" style="width: 100px; " class="btn btn-primary">Add</button>
+                                        </div>
+                                    </form>
                                 </div>
-                                <div class="form-group">
-                                  <label for="">Start Date</label>
-                                  <input type="date" class="form-control" id="p_startDate" name="p_startDate" placeholder="Enter project starting date" required>
-                                </div>
-                                <div class="form-group">
-                                  <label for="">Duration</label>
-                                  <input type="text" class="form-control" id="p_duration" name="p_duration" placeholder="Enter project duration" required>
-                                </div>
-                               
-                               
-                              </div>
-                              <!-- /.card-body -->
-                          
-                              <div class="card-footer">
-                                <button type="submit" style="width: 100px; " class="btn btn-primary">Add</button>
-                                
-                              </div>
-                            </form>
-                          </div>
-                                       <!-- end - create project -->
+                            </div>
+                            
+                            <div class="tab-pane fade" id="custom-tabs-three-profile" role="tabpanel" aria-labelledby="custom-tabs-three-profile-tab">
+                                <div class="card card-primary">
+                                    <div class="card-header">
+                                        <h3 class="card-title">View Projects</h3>
                                     </div>
 
-
-                                    <div class="tab-pane fade" id="custom-tabs-three-profile" role="tabpanel"
-                                        aria-labelledby="custom-tabs-three-profile-tab">
-                                   
+                                    <form  id="view_project_form">
+                                        <div class="card-body">  
+                                            <div id="err_msg5">
+                                            <!-- for error msg -->
+                                            </div>
+                                            <div class="row">
+                                            <div class="form-group">
+                                                <label for=""> From </label>
+                                                <input type="date" class="form-control" id="from_date" name="from_date" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="">To</label>
+                                                <input type="date" class="form-control" id="to_date" name="to_date" required>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer">
+                                            <button type="submit" style="width: 100px; " class="btn btn-primary">Show</button>
+                                        </div>
+                                    </form><br/>
+                                    <div id="date_project_view">
+                                        
                                     </div>
-
                                 </div>
+
                             </div>
 
                         </div>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
 
-
-                    </div><!-- /.container-fluid -->
-                </section>
-                <!-- /.content -->
-            </div>
-            <!-- /.content-wrapper -->
             <footer class="main-footer">
                 <div class="float-right d-none d-sm-block">
                     <b>All rights reserved</b>
@@ -326,4 +331,4 @@
         </div>
     </body>
     <%- include('_footer') %>
-        </div>
+</div>

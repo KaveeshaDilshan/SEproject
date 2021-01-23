@@ -151,6 +151,60 @@
 
 
 
+        $(document).on('submit', '#view_project_form', function (e) {
+            e.preventDefault();
+                let from_date = $('#from_date').val();
+                let to_date = $('#to_date').val();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/qs/createProject/viewProject',
+                    data: {
+                        'from_date': from_date,
+                        'to_date' :to_date,
+                    },
+                    success: function (response) {
+                        if(response.err!==""){
+                        $('#err_msg5').html(`<div class="alert alert-danger" role="alert">${response.err}</div>`);
+                        } else {
+                            // console.log(response);
+                            viewProjects = response.viewProjects;
+                            if (viewProjects.length === 0) {
+                                $('#err_msg5').html(`<div class="alert alert-danger" role="alert">no projects created</div>`);
+                            } else {
+                                var table = `
+                            <table class="table table-bordered">
+                            <thead>
+                              <tr>
+                                <th>ID</th>
+                                <th>Project Name</th>   
+                                <th>Started Date</th>
+                              </tr>
+                            </thead>
+                            <tbody>`;
+                            $.each(viewProjects, function (num,viewProject) {
+                                table += `
+                                <tr>
+                                    <td>${viewProject.p_id}</td>
+                                    <td>${viewProject.name}</td>
+                                    <td>${viewProject.to_char}</td>
+                                </tr>
+                                `;
+                            });
+                            table += ` </tbody>
+                                        </table>`;
+
+                            $('#date_project_view').html(table);
+                            $('#err_msg5').attr("style", 'display:none');
+                            }
+                        }
+                    },
+                    error: function (res) {
+                    }
+                });
+
+        });
+        
         $(document).on('submit', '#create_project_form', function (e) {
             e.preventDefault();
             var r = confirm("check the project details again!");
@@ -196,7 +250,6 @@
             }
 
         });
-
 
 
 

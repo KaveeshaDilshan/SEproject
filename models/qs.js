@@ -81,6 +81,28 @@ class QS {
         const out = await db.query(query);
         return out.rows;
     }
+
+    static async ViewProjects(from_date,to_date) {
+        console.log("viewProject");
+        const query=`select p_id,name,TO_CHAR(start_date :: DATE,'yyyy-mm-dd'),duration from project where start_date between $1 and $2;`;
+        const out = await db.query(query,[from_date,to_date]);
+        return out.rows;
+    }
+
+    static async getProjectIdFromName(name) {
+        console.log("getProjectId");
+        const query=`SELECT p_id FROM project WHERE name = $1`;
+        const out = await db.query(query,[name]);
+        return out.rows[0].p_id;
+    }
+
+    static async getProjectEstimations(p_id) {
+        console.log("estimationsOfProject");
+        const query=`SELECT * FROM Estimate where p_id = $1;`;
+        const out = await db.query(query,[p_id]);
+        return out.rows;
+    }
+
     static async saveNewProjectTodb(project_name,project_startDate, project_duration) {
         console.log("saveNewProjectTodb");
         const allprojects =await this.getAllProjects();

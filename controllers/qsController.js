@@ -11,7 +11,6 @@ const viewEstimation = async (req, res) => {
 
 const sendEstimation = async (req, res) => {
     try{
-        console.log(e_id_send);
         await qsService.sendEstimate(e_id_send);
         e_id_send ="";
         return res.status(200).send({result: 'redirect', url: 'estimationView', err: ''});
@@ -23,7 +22,6 @@ const sendEstimation = async (req, res) => {
 
 const deleteEstimate = async (req, res) => {
     try{
-        console.log(e_id_send);
         await qsService.deleteEstimate(e_id_send);
         e_id_send ="";
         return res.status(200).send({result: 'redirect', url: 'estimationView', err: ''});
@@ -47,8 +45,31 @@ const viewEstimationView = async (req, res) => {
     res.render('estimationView', {name: req.user.name,estimates,est_project,allprojects});
 }
 
+const getProjectEstimations = async (req, res) => {
+    try{
+        const Project_name = req.body.Project_name;
+        const project_id = await qsService.getProjectIdFromName(Project_name);
+        const projectestimations = await qsService.getProjectEstimations(project_id);
+        return res.status(200).send({projectestimations:projectestimations, err: ''});
+    } 
+    catch(err){
+        return res.status(200).send({err: `${err}`});
+    }
+}
+
 const viewCreateProject = async (req, res) => {
     res.render('createProject', {name: req.user.name});
+}
+
+const viewProject = async (req, res) => {
+    try{
+        const viewProjects = await qsService.ViewProjects(req.body);
+        console.log(viewProjects);
+        return res.status(200).send({viewProjects:viewProjects, err: ''});
+    } 
+    catch(err){
+        return res.status(200).send({err: `${err}`});
+    }
 }
 
 const addNewMaterial = async (req, res) => {
@@ -109,6 +130,8 @@ const saveNewProject = async (req, res) => {
         }
 }
 
+
+
 module.exports = {
     viewEstimation,
     viewEstimationView,
@@ -119,5 +142,7 @@ module.exports = {
     viewCreateProject,
     saveNewProject,
     sendEstimation,
-    deleteEstimate
+    deleteEstimate,
+    getProjectEstimations,
+    viewProject
 }
