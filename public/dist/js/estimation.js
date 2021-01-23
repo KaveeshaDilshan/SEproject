@@ -1,6 +1,142 @@
 
 (function () {
     jQuery(document).ready(function ($) {
+        var optionProject = '';
+        $(document).on('change', '#project_select2', function (e) {
+            e.preventDefault();
+            optionProject = $("#project_select2 option:selected").text();
+            // alert(optionProject);
+            if (optionProject !== '' || optionProject !== 'Select Project') {
+                $.ajax({
+                    type: 'POST',
+                    url: '/qs/estimationView/getProjectEstimations',
+                    data: {
+                        'Project_name': optionProject,
+                    },
+                    success: function (response) {
+                        if (response.err !== "") {
+                            // $('#err_msg').append(`<div class="alert alert-danger" role="alert">${response.err}</div>`) 
+                            // alert(response.err);
+                            return
+                        }
+                        else {
+                            // "<% = orders %>" = response.orders;
+                            // var orders = response.orders;
+                            var projectestimations = response.projectestimations;
+
+                            // start -show all estimations
+                            if (projectestimations.length !== 0) {
+                                
+                                $('#All_Estimate_view2').text('');
+                                var table = `
+                              <h3>All Estimations for ${optionProject} </h3>
+                                <table class="table table-bordered table-hover" id="view_project_estimation_table">
+                                <thead>
+                                  <tr>
+                                    <th>#</th>
+                                    <th>Estimation_ID</th>
+                                    <th>Create_Date</th>
+                                    <th>Submited</th>
+                                  </tr>
+                                </thead>
+                                <tbody>`;
+
+                                $.each(projectestimations, function (num, projectestimation) {
+                                    table += `
+                                    <tr>
+                                        <td>${num + 1}</td>
+                                        <td>${projectestimation.e_id}</td>
+                                        <td>${(projectestimation.create_date).substring(0, 10)}</td>`;
+                                        if(projectestimation.submit_status==true){
+                                            table += `<td>YES</td>`;
+                                        } else {
+                                            table += `<td>NO</td>`;
+                                        };
+                                        table += `
+                                    </tr>
+                                    `;
+                                });
+                                table += `   </tbody>
+                                            </table>`
+                                $('#All_Estimate_view2').append(table);
+                            }
+                            else {
+                                $('#All_Estimate_view').html(`<div class="alert alert-danger" role="alert">No any estimations for this project</div>`);
+                            }
+                            // end - show all estimtions
+                        }
+                    },
+                    error: function (res) {
+                    }
+                });
+            }
+        });
+
+       
+        $(document).on('click', '#btn-send', function (e) {
+            e.preventDefault();
+            var r = confirm("send!");
+            if (r) {
+                // let e_id = $('#span_edit_estimate').val();
+                $.ajax({
+                    type: 'POST',
+                    url: '/qs/estimationView/sendEstimate',
+                    
+                    success: function (response) {
+                        if(response.err!==""){
+                        $('#err_msg4').append(`<div class="alert alert-danger" role="alert">${response.err}</div>`) 
+                        // alert(response.err);
+                        return
+                        }
+                        console.log(response);
+                        if (response.result === 'redirect') {
+                            //redirecting
+                            let baseurl = window.location.origin;
+                            console.log(baseurl);
+                            baseurl = baseurl + '/qs/';
+                            let url = baseurl + response.url;
+                            window.location.replace(url);
+                        }
+                    },
+                    error: function (res) {
+                    }
+                });
+            
+            }
+
+        });
+        
+        $(document).on('click', '#btn-edit', function (e) {
+            e.preventDefault();
+            var r = confirm("delete!");
+            if (r) {
+                // let e_id = $('#span_edit_estimate').val();
+                $.ajax({
+                    type: 'DELETE',
+                    url: '/qs/estimationView/deleteEstimate',
+
+                    success: function (response) {
+                        if(response.err!==""){
+                        $('#err_msg4').append(`<div class="alert alert-danger" role="alert">${response.err}</div>`) 
+                        // alert(response.err);
+                        return
+                        }
+                        console.log(response);
+                        if (response.result === 'redirect') {
+                            //redirecting
+                            let baseurl = window.location.origin;
+                            console.log(baseurl);
+                            baseurl = baseurl + '/qs/';
+                            let url = baseurl + response.url;
+                            window.location.replace(url);
+                        }
+                    },
+                    error: function (res) {
+                    }
+                });
+            }
+        });
+
         $(document).on('submit', '#addNewMaterial-form', function (e) {
             e.preventDefault();
             var r = confirm("check the material again!");
